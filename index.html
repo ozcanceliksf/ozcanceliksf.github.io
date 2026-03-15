@@ -4,335 +4,1364 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ozcan Celik | IT Security Student</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
+    :root {
+      --black: #000000;
+      --bg: #060608;
+      --surface: #0c0c10;
+      --surface2: #12121a;
+      --border: #1a1a2e;
+      --border2: #22223a;
+      --neon: #00ffe7;
+      --neon2: #7b2fff;
+      --neon3: #ff2e63;
+      --text: #e8e8f0;
+      --muted: #6b6b8a;
+      --mono: 'Share Tech Mono', monospace;
+      --display: 'Rajdhani', sans-serif;
+      --body: 'Inter', sans-serif;
     }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0b1120;
-      color: #e5e7eb;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--body);
       line-height: 1.6;
+      overflow-x: hidden;
     }
-    header {
-      background: linear-gradient(180deg, #111827 0%, #0f172a 100%);
-      padding: 56px 20px 40px;
-      text-align: center;
-      border-bottom: 1px solid #1f2937;
+
+    /* Scanline overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,231,0.012) 2px, rgba(0,255,231,0.012) 4px);
+      pointer-events: none;
+      z-index: 9999;
     }
-    header h1 {
-      margin: 0;
-      font-size: 2.4rem;
-    }
-    header p {
-      margin: 12px auto 0;
-      font-size: 1.08rem;
-      color: #cbd5e1;
-      max-width: 900px;
-    }
-    .profile-photo {
-      width: 140px;
-      height: 140px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 4px solid #334155;
-      margin-bottom: 18px;
-    }
-    .button-row {
-      margin-top: 24px;
-    }
-    .button {
-      display: inline-block;
-      margin: 8px;
-      padding: 12px 18px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: bold;
-      background: #2563eb;
-      color: white;
-    }
-    .button.secondary {
-      background: #1f2937;
-      border: 1px solid #334155;
-    }
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--neon); border-radius: 2px; }
+
+    /* NAV */
     nav {
-      background: #172033;
-      text-align: center;
-      padding: 14px 10px;
       position: sticky;
       top: 0;
-      z-index: 10;
-      border-bottom: 1px solid #243042;
+      z-index: 100;
+      background: rgba(6,6,8,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 54px;
     }
-    nav a {
-      color: #93c5fd;
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 14px;
+      color: var(--neon);
+      letter-spacing: 2px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
       text-decoration: none;
-      margin: 0 12px;
-      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 4px;
+      transition: color 0.2s, background 0.2s;
+      letter-spacing: 1px;
+    }
+    .nav-links a:hover {
+      color: var(--neon);
+      background: rgba(0,255,231,0.07);
+    }
+
+    /* HERO */
+    header {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 80px 24px 60px;
+    }
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,255,231,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,231,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      animation: gridPulse 8s ease-in-out infinite;
+    }
+    @keyframes gridPulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+    .hero-glow {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,255,231,0.07) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: glowPulse 4s ease-in-out infinite;
+    }
+    @keyframes glowPulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+      50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 800px;
+    }
+    .hero-photo-wrap {
+      position: relative;
       display: inline-block;
-      padding: 4px 0;
+      margin-bottom: 28px;
     }
-    section {
-      max-width: 1000px;
-      margin: 30px auto;
-      padding: 0 20px;
+    .hero-photo-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: conic-gradient(var(--neon), var(--neon2), var(--neon3), var(--neon));
+      animation: rotateBorder 4s linear infinite;
+      z-index: -1;
     }
-    .card {
-      background: #111827;
-      padding: 24px;
-      border-radius: 14px;
-      margin-bottom: 22px;
-      border: 1px solid #1f2937;
+    @keyframes rotateBorder {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
-    h2 {
-      color: #93c5fd;
-      margin-top: 0;
+    .hero-photo-wrap::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 50%;
+      background: var(--bg);
+      z-index: -1;
+    }
+    .hero-photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      position: relative;
+    }
+    .hero-tag {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--neon);
+      letter-spacing: 3px;
       margin-bottom: 16px;
-      font-size: 1.8rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.3s;
     }
-    h3 {
-      margin-bottom: 8px;
-      color: #e5e7eb;
+    .hero-name {
+      font-family: var(--display);
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      font-weight: 700;
+      letter-spacing: 4px;
+      line-height: 1;
+      margin-bottom: 16px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.5s;
     }
-    ul {
-      padding-left: 22px;
-      margin-top: 8px;
+    .hero-name span {
+      color: var(--neon);
+      text-shadow: 0 0 20px rgba(0,255,231,0.5);
     }
-    li {
-      margin-bottom: 8px;
+    .hero-typing {
+      font-family: var(--mono);
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 28px;
+      min-height: 24px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.7s;
     }
-    a {
-      color: #93c5fd;
+    .cursor {
+      display: inline-block;
+      width: 2px;
+      height: 16px;
+      background: var(--neon);
+      vertical-align: middle;
+      animation: blink 0.8s step-end infinite;
     }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 18px;
-    }
-    .project-card {
-      background: #0f172a;
-      border: 1px solid #243042;
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+    /* WHY HIRE ME — pinned banner */
+    .hire-banner {
+      background: linear-gradient(135deg, rgba(0,255,231,0.06) 0%, rgba(123,47,255,0.06) 100%);
+      border: 1px solid rgba(0,255,231,0.2);
       border-radius: 12px;
-      padding: 18px;
+      padding: 20px 28px;
+      margin-bottom: 32px;
+      text-align: left;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.9s;
     }
-    .project-card p {
+    .hire-banner-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--neon);
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+    .hire-banner p {
+      font-size: 14px;
+      color: #b0b0c8;
+      line-height: 1.7;
+    }
+    .hire-banner strong { color: var(--neon); font-weight: 500; }
+
+    .hero-btns {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 1.1s;
+    }
+    .btn {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      padding: 12px 24px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-neon {
+      background: transparent;
+      border: 1px solid var(--neon);
+      color: var(--neon);
+      text-shadow: 0 0 8px rgba(0,255,231,0.4);
+    }
+    .btn-neon:hover {
+      background: var(--neon);
+      color: #000;
+      box-shadow: 0 0 20px rgba(0,255,231,0.4);
+      text-shadow: none;
+    }
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid var(--border2);
+      color: var(--muted);
+    }
+    .btn-ghost:hover {
+      border-color: var(--neon);
+      color: var(--neon);
+    }
+
+    /* SECTIONS */
+    .section {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 70px 24px;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--neon), transparent);
+    }
+    .section-title {
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 3px;
+      color: var(--neon);
+    }
+    .section-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* ABOUT */
+    .about-text {
+      font-size: 16px;
+      color: #b0b0c8;
+      line-height: 1.9;
+      max-width: 760px;
+    }
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+      margin-top: 36px;
+    }
+    .stat-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+    .stat-box:hover { border-color: var(--neon); }
+    .stat-num {
+      font-family: var(--display);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--neon);
+    }
+    .stat-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 1.5px;
+      margin-top: 4px;
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .skill-group {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: border-color 0.2s;
+    }
+    .skill-group:hover { border-color: rgba(0,255,231,0.3); }
+    .skill-group-title {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--neon);
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .skill-bar-row {
       margin-bottom: 14px;
     }
-    .small {
-      color: #cbd5e1;
-      font-size: 0.96rem;
+    .skill-bar-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
     }
-    footer {
+    .skill-bar-name {
+      font-size: 13px;
+      color: var(--text);
+    }
+    .skill-bar-pct {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--neon);
+    }
+    .skill-bar-bg {
+      height: 3px;
+      background: var(--border2);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--neon), var(--neon2));
+      width: 0;
+      transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* TOOLS CHIPS */
+    .tools-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tool-chip {
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      border: 1px solid var(--border2);
+      color: var(--muted);
+      background: var(--surface);
+      transition: all 0.2s;
+    }
+    .tool-chip:hover {
+      border-color: var(--neon);
+      color: var(--neon);
+      background: rgba(0,255,231,0.05);
+    }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--neon), var(--neon2));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .project-card:hover::before { transform: scaleX(1); }
+    .project-card:hover {
+      border-color: rgba(0,255,231,0.25);
+      transform: translateY(-3px);
+    }
+    .project-icon {
+      font-size: 24px;
+      margin-bottom: 14px;
+    }
+    .project-title {
+      font-family: var(--display);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .project-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      flex: 1;
+      margin-bottom: 16px;
+    }
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .project-tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      padding: 3px 9px;
+      border-radius: 3px;
+      background: rgba(0,255,231,0.07);
+      border: 1px solid rgba(0,255,231,0.2);
+      color: var(--neon);
+    }
+    .project-link {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--neon);
+      text-decoration: none;
+      letter-spacing: 1px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .project-link:hover { color: #fff; }
+
+    /* EXPERIENCE TIMELINE */
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: linear-gradient(180deg, var(--neon), var(--neon2), transparent);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 40px;
+    }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-dot {
+      position: absolute;
+      left: -24px;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--neon);
+      box-shadow: 0 0 10px rgba(0,255,231,0.6);
+    }
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .timeline-title {
+      font-family: var(--display);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .timeline-date {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--neon);
+      white-space: nowrap;
+    }
+    .timeline-company {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .timeline-ul {
+      list-style: none;
+      padding: 0;
+    }
+    .timeline-ul li {
+      font-size: 14px;
+      color: #a0a0b8;
+      padding: 4px 0 4px 16px;
+      position: relative;
+      line-height: 1.6;
+    }
+    .timeline-ul li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--neon);
+    }
+
+    /* EDUCATION */
+    .edu-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+    .edu-badge {
+      background: rgba(0,255,231,0.07);
+      border: 1px solid rgba(0,255,231,0.2);
+      border-radius: 10px;
+      padding: 20px;
       text-align: center;
-      padding: 30px 20px 40px;
-      color: #94a3b8;
+      min-width: 100px;
+    }
+    .edu-badge-gpa {
+      font-family: var(--display);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--neon);
+      line-height: 1;
+    }
+    .edu-badge-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--muted);
+      letter-spacing: 1.5px;
+      margin-top: 4px;
+    }
+    .edu-info { flex: 1; min-width: 200px; }
+    .edu-school {
+      font-family: var(--display);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .edu-degree {
+      font-size: 14px;
+      color: var(--neon);
+      margin-bottom: 16px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+    .course-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .course-chip {
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 4px;
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      color: var(--muted);
+    }
+
+    /* CTF */
+    .ctf-card {
+      background: var(--surface);
+      border: 1px solid rgba(123,47,255,0.3);
+      border-radius: 12px;
+      padding: 28px;
+    }
+    .ctf-intro {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+    .ctf-platforms {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .ctf-platform {
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .ctf-platform:hover {
+      border-color: var(--neon2);
+    }
+    .ctf-platform-name {
+      font-family: var(--display);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .ctf-platform-sub {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+    }
+    .ctf-coming {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: rgba(123,47,255,0.8);
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    /* GITHUB STATS */
+    .github-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .github-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .github-card img {
+      width: 100%;
+      display: block;
+    }
+
+    /* CERTIFICATIONS */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+    .cert-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: border-color 0.2s;
+    }
+    .cert-card:hover { border-color: var(--neon); }
+    .cert-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .cert-icon.active { background: rgba(0,255,231,0.1); }
+    .cert-icon.progress { background: rgba(234,179,8,0.1); }
+    .cert-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+    .cert-status {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 1px;
+    }
+    .cert-status.active { color: var(--neon); }
+    .cert-status.progress { color: #eab308; }
+
+    /* LANGUAGES */
+    .lang-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .lang-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 28px;
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+    .lang-card:hover { border-color: var(--neon); }
+    .lang-flag { font-size: 28px; margin-bottom: 8px; }
+    .lang-name {
+      font-family: var(--display);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .lang-level {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 4px;
+      letter-spacing: 1px;
+    }
+
+    /* CONTACT */
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 600px) { .contact-wrap { grid-template-columns: 1fr; } }
+    .contact-info {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+    }
+    .contact-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--neon);
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+    .contact-val {
+      font-size: 14px;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .contact-val a {
+      color: var(--neon);
+      text-decoration: none;
+    }
+    .contact-val a:hover { text-decoration: underline; }
+    .contact-cta {
+      background: linear-gradient(135deg, rgba(0,255,231,0.06), rgba(123,47,255,0.06));
+      border: 1px solid rgba(0,255,231,0.2);
+      border-radius: 12px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .cta-title {
+      font-family: var(--display);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .cta-title span { color: var(--neon); }
+    .cta-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 30px 24px;
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 1.5px;
+    }
+    footer span { color: var(--neon); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero-name { letter-spacing: 2px; }
+      .contact-wrap { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
- <header>
-    <img src="ozcan%20celik%20pic.jpeg" alt="Ozcan Celik Profile Photo" class="profile-photo">
-    <h1>Ozcan Celik</h1>
-    <p>IT Security Student | Technical Support | Help Desk | Networking Fundamentals</p>
-    <div class="button-row">
-      <a class="button" href="https://www.linkedin.com/in/ozcanceliksf" target="_blank">LinkedIn</a>
-      <a class="button secondary" href="https://github.com/ozcanceliksf" target="_blank">GitHub</a>
-      <a class="button secondary" href="https://raw.githubusercontent.com/ozcanceliksf/resume-and-career-docs/main/Ozcan%20Celik%20Resume.pdf" target="_blank">Download Resume</a>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-logo">&gt; OC_</span>
+    <div class="nav-links">
+      <a href="#about">about</a>
+      <a href="#skills">skills</a>
+      <a href="#projects">projects</a>
+      <a href="#experience">experience</a>
+      <a href="#ctf">ctf</a>
+      <a href="#education">education</a>
+      <a href="#certifications">certs</a>
+      <a href="#contact">contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header>
+    <div class="hero-grid-bg"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <div class="hero-photo-wrap">
+        <img src="ozcan%20celik%20pic.jpeg" alt="Ozcan Celik" class="hero-photo">
+      </div>
+      <div class="hero-tag">// IT SECURITY · NETWORKING · HELP DESK</div>
+      <h1 class="hero-name">OZCAN <span>CELIK</span></h1>
+      <div class="hero-typing">
+        <span id="typed-text"></span><span class="cursor"></span>
+      </div>
+      <div class="hire-banner">
+        <div class="hire-banner-label">// WHY HIRE ME</div>
+        <p>I bring <strong>4+ years of real-world technical support</strong> (POS systems, SQL, networking) combined with active IT Security studies and a <strong>3.28 GPA</strong>. I'm CPT-eligible, bilingual, and ready to contribute from day one — not just learn on the job.</p>
+      </div>
+      <div class="hero-btns">
+        <a href="https://raw.githubusercontent.com/ozcanceliksf/resume-and-career-docs/main/Ozcan%20Celik%20Resume.pdf" target="_blank" class="btn btn-neon">⬇ RESUME</a>
+        <a href="https://www.linkedin.com/in/ozcanceliksf" target="_blank" class="btn btn-ghost">LinkedIn</a>
+        <a href="https://github.com/ozcanceliksf" target="_blank" class="btn btn-ghost">GitHub</a>
+        <a href="#contact" class="btn btn-ghost">Contact</a>
+      </div>
     </div>
   </header>
 
-  <nav>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#experience">Experience</a>
-    <a href="#education">Education</a>
-    <a href="#organizations">Organizations</a>
-    <a href="#certifications">Certifications</a>
-    <a href="#languages">Languages</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-  <section id="about">
-    <div class="card">
-      <h2>About</h2>
-      <p>
-        IT Security student at Santa Fe College with prior hands-on technical support experience supporting POS systems, network connectivity, and SQL-based transaction systems. Skilled in troubleshooting hardware, networking issues, and assisting users in operational environments. Currently seeking a CPT-eligible IT Support, Help Desk, or Technical Support internship to gain hands-on experience in IT infrastructure, systems support, and cybersecurity practices while completing an IT Security degree.
-      </p>
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="section-header reveal">
+      <span class="section-num">01</span>
+      <span class="section-title">ABOUT</span>
+      <div class="section-line"></div>
     </div>
-  </section>
-
-  <section id="skills">
-    <div class="card">
-      <h2>Technical Skills</h2>
-      <div class="grid">
-        <div>
-          <h3>IT Support</h3>
-          <ul>
-            <li>Desktop and laptop setup</li>
-            <li>Hardware troubleshooting</li>
-            <li>Software troubleshooting</li>
-            <li>Printer configuration</li>
-            <li>Technical documentation</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Networking</h3>
-          <ul>
-            <li>TCP/IP fundamentals</li>
-            <li>IP addressing</li>
-            <li>Subnetting basics</li>
-            <li>OSI model</li>
-            <li>Basic routing and switching</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Systems & Tools</h3>
-          <ul>
-            <li>Windows OS</li>
-            <li>Linux command line basics</li>
-            <li>VirtualBox</li>
-            <li>Basic Active Directory concepts</li>
-            <li>Cisco Packet Tracer</li>
-            <li>Microsoft Office</li>
-            <li>Google Workspace</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="projects">
-    <div class="card">
-      <h2>Projects</h2>
-      <div class="grid">
-        <div class="project-card">
-          <h3>Networking Fundamentals Labs</h3>
-          <p class="small">Practice in IP addressing, subnetting, routing, switching, and troubleshooting.</p>
-          <a href="https://github.com/ozcanceliksf/networking-fundamentals-labs" target="_blank">View Repository</a>
-        </div>
-        <div class="project-card">
-          <h3>Cybersecurity Course Notes</h3>
-          <p class="small">Notes and summaries on security concepts, threats, and risk mitigation.</p>
-          <a href="https://github.com/ozcanceliksf/cybersecurity-course-notes" target="_blank">View Repository</a>
-        </div>
-        <div class="project-card">
-          <h3>VirtualBox, Linux, and Windows Practice</h3>
-          <p class="small">System practice with Windows, Linux CLI, and virtual machine environments.</p>
-          <a href="https://github.com/ozcanceliksf/virtualbox-linux-windows-practice" target="_blank">View Repository</a>
-        </div>
-        <div class="project-card">
-          <h3>Technical Support Projects</h3>
-          <p class="small">Troubleshooting notes, documentation, and support checklists.</p>
-          <a href="https://github.com/ozcanceliksf/technical-support-projects" target="_blank">View Repository</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="experience">
-  <div class="card">
-    <h2>Experience</h2>
-
-    <h3>Student Office Assistant</h3>
-    <p class="small">Santa Fe College – Health Sciences, Gainesville, FL | September 2024 – December 2024</p>
-    <ul>
-      <li>Supported administrative and basic technical tasks in an academic healthcare environment.</li>
-      <li>Assisted staff and students with scheduling, documentation, and system usage.</li>
-      <li>Maintained organized records and supported efficient office operations.</li>
-    </ul>
-
-    <h3>Technical Support Specialist (POS Systems)</h3>
-    <p class="small">Posmatik, Turkey | 2012 – 2016</p>
-    <ul>
-      <li>Installed and configured POS systems for restaurants and retail businesses.</li>
-      <li>Diagnosed and resolved network connectivity issues including IP configuration errors.</li>
-      <li>Troubleshot SQL database issues affecting transaction and accounting systems.</li>
-      <li>Trained users on POS system operations and daily support procedures.</li>
-    </ul>
-
-    <h3>Digital Systems &amp; Operations Support</h3>
-    <p class="small">TDT Organization, Turkey | 2021 – 2023</p>
-    <ul>
-      <li>Conducted research on visa programs across the U.S., Canada, and European countries.</li>
-      <li>Organized structured data and documentation using Excel-based tracking systems.</li>
-      <li>Developed internal information resources to support visa advisory operations.</li>
-      <li>Managed digital communication and informational content for international clients.</li>
-    </ul>
-  </div>
-</section>
-
-<section id="education">
-  <div class="card">
-    <h2>Education</h2>
-    <h3>Santa Fe College</h3>
-    <p class="small">Associate of Science in IT Security (In Progress)</p>
-    <p class="small">Expected Graduation: 2027 | Program GPA: 3.28</p>
-
-    <h3>Relevant Coursework</h3>
-    <ul>
-      <li>Information Security Fundamentals</li>
-      <li>Cisco Networking Fundamentals</li>
-      <li>Network Security</li>
-      <li>Computer and Network Security</li>
-      <li>Ethical Hacking</li>
-      <li>Programming Logic</li>
-      <li>IT Project Management</li>
-    </ul>
-  </div>
-</section>
-<section id="organizations">
-  <div class="card">
-    <h2>Organizations & Involvement</h2>
-    <h3>IT Club – Santa Fe College</h3>
-    <p class="small">Member | August 2024 – Present</p>
-    <ul>
-      <li>Participate in meetings focused on IT fundamentals, cybersecurity topics, and career development.</li>
-      <li>Engage with peers and guest speakers to learn about entry-level IT roles and industry expectations.</li>
-    </ul>
-  </div>
-</section>
-  
-  <section id="certifications">
-    <div class="card">
-      <h2>Certifications & Training</h2>
-      <ul>
-        <li>CompTIA Network+ (In Progress)</li>
-        <li>ISC2 Certified in Cybersecurity (CC) (In Progress)</li>
-        <li>Amateur Sailor’s License</li>
-        <li>Short Range Radio Operator License</li>
-        <li>IHA-0 Sportive/Amateur Drone Pilot Credential</li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="languages">
-  <div class="card">
-    <h2>Languages</h2>
-    <ul>
-      <li>Turkish — Fluent</li>
-      <li>English — Professional Working Proficiency</li>
-    </ul>
-  </div>
-</section>
-  
- <section id="contact">
-  <div class="card">
-    <h2>Contact</h2>
-    <p>If you would like to connect regarding IT support, help desk, networking, or cybersecurity opportunities, feel free to reach out.</p>
-    <p class="small">
-      Email: <a href="mailto:ozcan.celik@go.sfcollege.edu">ozcan.celik@go.sfcollege.edu</a> |
-      <a href="mailto:ozcan@c72.org">ozcan@c72.org</a>
+    <p class="about-text reveal">
+      IT Security student at Santa Fe College with hands-on technical support experience supporting POS systems, network connectivity, and SQL-based transaction systems. Skilled in troubleshooting hardware, networking issues, and assisting users in operational environments. Currently seeking a <strong style="color:var(--neon);font-weight:500;">CPT-eligible IT Support, Help Desk, or Technical Support internship</strong> to gain hands-on experience in IT infrastructure, systems support, and cybersecurity practices.
     </p>
-    <div class="button-row">
-      <a class="button" href="mailto:ozcan.celik@go.sfcollege.edu">Email Me</a>
+    <div class="about-stats reveal">
+      <div class="stat-box">
+        <div class="stat-num">4+</div>
+        <div class="stat-label">YEARS SUPPORT EXP</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">3.28</div>
+        <div class="stat-label">PROGRAM GPA</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">2</div>
+        <div class="stat-label">LANGUAGES</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">CERTIFICATIONS</div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section" id="skills">
+    <div class="section-header reveal">
+      <span class="section-num">02</span>
+      <span class="section-title">TECHNICAL SKILLS</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-group reveal">
+        <div class="skill-group-title">// IT SUPPORT</div>
+        <div class="skill-bar-row">
+          <div class="skill-bar-meta"><span class="skill-bar-name">Hardware Troubleshooting</span><span class="skill-bar-pct">88%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="88"></div></div>
+        </div>
+        <div class="skill-bar-row">
+          <div class="skill-bar-meta"><span class="skill-bar-name">Desktop & Laptop Setup</span><span class="skill-bar-pct">85%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="85"></div></div>
+        </div>
+        <div class="skill-bar-row">
+          <div class="skill-bar-meta"><span class="skill-bar-name">Software Troubleshooting</span><span class="skill-bar-pct">82%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="82"></div></div>
+        </div>
+        <div class="skill-bar-row">
+          <div class="skill-bar-meta"><span class="skill-bar-name">Technical Documentation</span><span class="skill-bar-pct">80%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="80"></div></div>
+        </div>
+        <div class="skill-bar-row">
+          <div class="skill-bar-meta"><span class="skill-bar-name">Printer Configuration</span><span class="skill-bar-pct">75%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="75"></div></div>
+        </div>
+      </div>
+
+      <div class="skill-group reveal">
+        <div class="skill-group-title">// NETWORKING</div>
+        <div class="skill-bar-row">
+          <div class="skill-bar-meta"><span class="skill-bar-name">TCP/IP Fundamentals</span><span class="skill-bar-pct">82%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="82"></div></div>
+        </div>
+        <div class="skill-bar-row">
+          <div class="skill-bar-meta"><span class="skill-bar-name">IP Addressing</span><span class="skill-bar-pct">80%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="80"></div></div>
+        </div>
+        <div class="skill-bar-row">
+          <div class="skill-bar-meta"><span class="skill-bar-name">Subnetting</span><span class="skill-bar-pct">72%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="72"></div></div>
+        </div>
+        <div class="skill-bar-row">
+          <div class="skill-bar-meta"><span class="skill-bar-name">OSI Model</span><span class="skill-bar-pct">78%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="78"></div></div>
+        </div>
+        <div class="skill-bar-row">
+          <div class="skill-bar-meta"><span class="skill-bar-name">Routing & Switching</span><span class="skill-bar-pct">68%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="68"></div></div>
+        </div>
+      </div>
+
+      <div class="skill-group reveal">
+        <div class="skill-group-title">// SYSTEMS & TOOLS</div>
+        <div class="tools-wrap">
+          <span class="tool-chip">Windows OS</span>
+          <span class="tool-chip">Linux CLI</span>
+          <span class="tool-chip">VirtualBox</span>
+          <span class="tool-chip">Active Directory</span>
+          <span class="tool-chip">Cisco Packet Tracer</span>
+          <span class="tool-chip">Microsoft Office</span>
+          <span class="tool-chip">Google Workspace</span>
+          <span class="tool-chip">SQL Basics</span>
+          <span class="tool-chip">POS Systems</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="section-header reveal">
+      <span class="section-num">03</span>
+      <span class="section-title">PROJECTS</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <div class="project-icon">🌐</div>
+        <div class="project-title">Networking Fundamentals Labs</div>
+        <div class="project-desc">Hands-on practice in IP addressing, subnetting, routing, switching, and network troubleshooting using Cisco Packet Tracer.</div>
+        <div class="project-tags">
+          <span class="project-tag">Cisco Packet Tracer</span>
+          <span class="project-tag">Subnetting</span>
+          <span class="project-tag">Routing</span>
+        </div>
+        <a href="https://github.com/ozcanceliksf/networking-fundamentals-labs" target="_blank" class="project-link">VIEW REPO →</a>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-icon">🔒</div>
+        <div class="project-title">Cybersecurity Course Notes</div>
+        <div class="project-desc">Structured notes and summaries on security concepts, threat modeling, and risk mitigation frameworks.</div>
+        <div class="project-tags">
+          <span class="project-tag">Security</span>
+          <span class="project-tag">Risk Mgmt</span>
+          <span class="project-tag">Threats</span>
+        </div>
+        <a href="https://github.com/ozcanceliksf/cybersecurity-course-notes" target="_blank" class="project-link">VIEW REPO →</a>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-icon">💻</div>
+        <div class="project-title">VirtualBox, Linux & Windows Practice</div>
+        <div class="project-desc">System practice using Windows, Linux CLI, and virtual machine environments. VM configuration and OS administration.</div>
+        <div class="project-tags">
+          <span class="project-tag">Linux</span>
+          <span class="project-tag">VirtualBox</span>
+          <span class="project-tag">VM Admin</span>
+        </div>
+        <a href="https://github.com/ozcanceliksf/virtualbox-linux-windows-practice" target="_blank" class="project-link">VIEW REPO →</a>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-icon">🛠️</div>
+        <div class="project-title">Technical Support Projects</div>
+        <div class="project-desc">Troubleshooting notes, IT documentation templates, and help desk support checklists from real-world scenarios.</div>
+        <div class="project-tags">
+          <span class="project-tag">Help Desk</span>
+          <span class="project-tag">Documentation</span>
+          <span class="project-tag">Support</span>
+        </div>
+        <a href="https://github.com/ozcanceliksf/technical-support-projects" target="_blank" class="project-link">VIEW REPO →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section" id="experience">
+    <div class="section-header reveal">
+      <span class="section-num">04</span>
+      <span class="section-title">EXPERIENCE</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-header">
+          <span class="timeline-title">Student Office Assistant</span>
+          <span class="timeline-date">SEP 2024 – DEC 2024</span>
+        </div>
+        <div class="timeline-company">Santa Fe College – Health Sciences · Gainesville, FL</div>
+        <ul class="timeline-ul">
+          <li>Supported administrative and basic technical tasks in an academic healthcare environment.</li>
+          <li>Assisted staff and students with scheduling, documentation, and system usage.</li>
+          <li>Maintained organized records and supported efficient office operations.</li>
+        </ul>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-header">
+          <span class="timeline-title">Technical Support Specialist — POS Systems</span>
+          <span class="timeline-date">2012 – 2016</span>
+        </div>
+        <div class="timeline-company">Posmatik · Turkey</div>
+        <ul class="timeline-ul">
+          <li>Installed and configured POS systems for restaurants and retail businesses.</li>
+          <li>Diagnosed and resolved network connectivity issues including IP configuration errors.</li>
+          <li>Troubleshot SQL database issues affecting transaction and accounting systems.</li>
+          <li>Trained users on POS system operations and daily support procedures.</li>
+        </ul>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-header">
+          <span class="timeline-title">Digital Systems & Operations Support</span>
+          <span class="timeline-date">2021 – 2023</span>
+        </div>
+        <div class="timeline-company">TDT Organization · Turkey</div>
+        <ul class="timeline-ul">
+          <li>Conducted research on visa programs across U.S., Canada, and European countries.</li>
+          <li>Organized structured data and documentation using Excel-based tracking systems.</li>
+          <li>Developed internal information resources to support visa advisory operations.</li>
+          <li>Managed digital communication and informational content for international clients.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTF -->
+  <section class="section" id="ctf">
+    <div class="section-header reveal">
+      <span class="section-num">05</span>
+      <span class="section-title">CTF & CYBER CHALLENGES</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="ctf-card reveal">
+      <div class="ctf-intro">// Currently building hands-on offensive and defensive security skills through structured CTF platforms.<br>// This section will be updated as challenges are completed.</div>
+      <div class="ctf-platforms">
+        <div class="ctf-platform">
+          <div class="ctf-platform-name">TryHackMe</div>
+          <div class="ctf-platform-sub">tryhackme.com</div>
+          <div class="ctf-coming">STARTING SOON</div>
+        </div>
+        <div class="ctf-platform">
+          <div class="ctf-platform-name">HackTheBox</div>
+          <div class="ctf-platform-sub">hackthebox.com</div>
+          <div class="ctf-coming">STARTING SOON</div>
+        </div>
+        <div class="ctf-platform">
+          <div class="ctf-platform-name">PicoCTF</div>
+          <div class="ctf-platform-sub">picoctf.org</div>
+          <div class="ctf-coming">STARTING SOON</div>
+        </div>
+      </div>
+      <div style="font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.8;">
+        // Target skills: Web exploitation · Network forensics · Reverse engineering · OSINT · Cryptography
+      </div>
+    </div>
+  </section>
+
+  <!-- GITHUB STATS -->
+  <section class="section" id="github">
+    <div class="section-header reveal">
+      <span class="section-num">06</span>
+      <span class="section-title">GITHUB ACTIVITY</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="github-grid reveal">
+      <div class="github-card">
+        <img src="https://github-readme-stats.vercel.app/api?username=ozcanceliksf&show_icons=true&theme=chartreuse-dark&hide_border=true&bg_color=0c0c10&title_color=00ffe7&icon_color=00ffe7&text_color=a0a0b8" alt="GitHub Stats" loading="lazy">
+      </div>
+      <div class="github-card">
+        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=ozcanceliksf&layout=compact&theme=chartreuse-dark&hide_border=true&bg_color=0c0c10&title_color=00ffe7&text_color=a0a0b8" alt="Top Languages" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="section" id="education">
+    <div class="section-header reveal">
+      <span class="section-num">07</span>
+      <span class="section-title">EDUCATION</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-badge">
+        <div class="edu-badge-gpa">3.28</div>
+        <div class="edu-badge-label">PROGRAM GPA</div>
+      </div>
+      <div class="edu-info">
+        <div class="edu-school">Santa Fe College</div>
+        <div class="edu-degree">// A.S. IN IT SECURITY · IN PROGRESS · EXP. 2027</div>
+        <div class="course-chips">
+          <span class="course-chip">Info Security Fundamentals</span>
+          <span class="course-chip">Cisco Networking</span>
+          <span class="course-chip">Network Security</span>
+          <span class="course-chip">Ethical Hacking</span>
+          <span class="course-chip">Computer & Network Security</span>
+          <span class="course-chip">Programming Logic</span>
+          <span class="course-chip">IT Project Management</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;" class="reveal">
+      <div class="skill-group">
+        <div class="skill-group-title">// IT CLUB — SANTA FE COLLEGE &nbsp;<span style="color:var(--muted);font-size:10px;">AUG 2024 – PRESENT</span></div>
+        <ul class="timeline-ul">
+          <li>Participate in meetings focused on IT fundamentals, cybersecurity topics, and career development.</li>
+          <li>Engage with peers and guest speakers to learn about entry-level IT roles and industry expectations.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section class="section" id="certifications">
+    <div class="section-header reveal">
+      <span class="section-num">08</span>
+      <span class="section-title">CERTIFICATIONS</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card reveal">
+        <div class="cert-icon progress">🎯</div>
+        <div>
+          <div class="cert-name">CompTIA Network+</div>
+          <div class="cert-status progress">IN PROGRESS</div>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon progress">🛡️</div>
+        <div>
+          <div class="cert-name">ISC2 Certified in Cybersecurity (CC)</div>
+          <div class="cert-status progress">IN PROGRESS</div>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon active">⚓</div>
+        <div>
+          <div class="cert-name">Amateur Sailor's License</div>
+          <div class="cert-status active">ACTIVE</div>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon active">📡</div>
+        <div>
+          <div class="cert-name">Short Range Radio Operator License</div>
+          <div class="cert-status active">ACTIVE</div>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon active">🚁</div>
+        <div>
+          <div class="cert-name">IHA-0 Drone Pilot Credential</div>
+          <div class="cert-status active">ACTIVE</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LANGUAGES -->
+  <section class="section" id="languages">
+    <div class="section-header reveal">
+      <span class="section-num">09</span>
+      <span class="section-title">LANGUAGES</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="lang-row">
+      <div class="lang-card reveal">
+        <div class="lang-flag">🇹🇷</div>
+        <div class="lang-name">Turkish</div>
+        <div class="lang-level">NATIVE / FLUENT</div>
+      </div>
+      <div class="lang-card reveal">
+        <div class="lang-flag">🇺🇸</div>
+        <div class="lang-name">English</div>
+        <div class="lang-level">PROFESSIONAL WORKING</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="section-header reveal">
+      <span class="section-num">10</span>
+      <span class="section-title">CONTACT</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="contact-wrap">
+      <div class="contact-info reveal">
+        <div class="contact-label">// EMAIL</div>
+        <div class="contact-val">
+          <a href="mailto:ozcan.celik@go.sfcollege.edu">ozcan.celik@go.sfcollege.edu</a><br>
+          <a href="mailto:ozcan@c72.org">ozcan@c72.org</a>
+        </div>
+        <div class="contact-label">// LOCATION</div>
+        <div class="contact-val">Gainesville, FL — CPT Eligible</div>
+        <div class="contact-label">// PROFILES</div>
+        <div class="contact-val">
+          <a href="https://www.linkedin.com/in/ozcanceliksf" target="_blank">LinkedIn ↗</a> &nbsp;·&nbsp;
+          <a href="https://github.com/ozcanceliksf" target="_blank">GitHub ↗</a>
+        </div>
+        <a href="mailto:ozcan.celik@go.sfcollege.edu" class="btn btn-neon" style="margin-top:8px;">SEND MESSAGE</a>
+      </div>
+      <div class="contact-cta reveal">
+        <div class="cta-title">Open to <span>IT Support</span> &<br><span>Cybersecurity</span> Internships</div>
+        <div class="cta-sub">CPT-eligible student actively seeking hands-on experience in IT infrastructure, systems support, and cybersecurity. Available for internship opportunities in the Gainesville, FL area and remote.</div>
+        <a href="https://raw.githubusercontent.com/ozcanceliksf/resume-and-career-docs/main/Ozcan%20Celik%20Resume.pdf" target="_blank" class="btn btn-neon">⬇ DOWNLOAD RESUME</a>
+      </div>
+    </div>
+  </section>
 
   <footer>
-    <p>© 2026 Ozcan Celik</p>
+    <p>© 2026 <span>OZCAN CELIK</span> &nbsp;·&nbsp; Built with purpose &nbsp;·&nbsp; <span>ozcanceliksf.github.io</span></p>
   </footer>
+
+  <script>
+    // TYPING EFFECT
+    const phrases = [
+      'IT Security Student @ Santa Fe College',
+      'Help Desk & Technical Support',
+      'Networking Fundamentals',
+      'CPT-Eligible · Seeking Internship',
+    ];
+    let pi = 0, ci = 0, deleting = false;
+    const el = document.getElementById('typed-text');
+    function type() {
+      const phrase = phrases[pi];
+      if (!deleting) {
+        el.textContent = phrase.slice(0, ci + 1);
+        ci++;
+        if (ci === phrase.length) {
+          deleting = true;
+          setTimeout(type, 2200);
+          return;
+        }
+      } else {
+        el.textContent = phrase.slice(0, ci - 1);
+        ci--;
+        if (ci === 0) {
+          deleting = false;
+          pi = (pi + 1) % phrases.length;
+        }
+      }
+      setTimeout(type, deleting ? 38 : 62);
+    }
+    type();
+
+    // SCROLL REVEAL
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => observer.observe(el));
+
+    // SKILL BARS — animate when visible
+    const barObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+            bar.style.width = bar.dataset.w + '%';
+          });
+          barObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.skill-group').forEach(g => barObserver.observe(g));
+  </script>
 </body>
 </html>
