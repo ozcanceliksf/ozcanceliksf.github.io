@@ -1385,4 +1385,17 @@
     revealEls.forEach(el => observer.observe(el));
 
     // SKILL BARS — animate when visible
-    const barObserver = new IntersectionObserv
+    const barObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+            bar.style.width = bar.dataset.w + '%';
+          });
+          barObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.skill-group').forEach(g => barObserver.observe(g));
+  </script>
+</body>
+</html>
