@@ -23,80 +23,28 @@
       --display: 'Rajdhani', sans-serif;
       --body: 'Inter', sans-serif;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--body);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,231,0.012) 2px, rgba(0,255,231,0.012) 4px);
-      pointer-events: none;
-      z-index: 9999;
-    }
-
+    body { background: var(--bg); color: var(--text); font-family: var(--body); line-height: 1.6; overflow-x: hidden; }
+    body::before { content: ''; position: fixed; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,231,0.012) 2px, rgba(0,255,231,0.012) 4px); pointer-events: none; z-index: 9999; }
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--neon); border-radius: 2px; }
 
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(6,6,8,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 54px;
-    }
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(6,6,8,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 54px; }
     .nav-logo { font-family: var(--mono); font-size: 14px; color: var(--neon); letter-spacing: 2px; }
     .nav-links { display: flex; gap: 6px; flex-wrap: wrap; }
-    .nav-links a {
-      font-family: var(--mono); font-size: 11px; color: var(--muted);
-      text-decoration: none; padding: 5px 10px; border-radius: 4px;
-      transition: color 0.2s, background 0.2s; letter-spacing: 1px;
-    }
+    .nav-links a { font-family: var(--mono); font-size: 11px; color: var(--muted); text-decoration: none; padding: 5px 10px; border-radius: 4px; transition: color 0.2s, background 0.2s; letter-spacing: 1px; }
     .nav-links a:hover { color: var(--neon); background: rgba(0,255,231,0.07); }
 
-    header {
-      min-height: 100vh; display: flex; align-items: center;
-      justify-content: center; position: relative; overflow: hidden; padding: 80px 24px 60px;
-    }
-    .hero-grid-bg {
-      position: absolute; inset: 0;
-      background-image: linear-gradient(rgba(0,255,231,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,231,0.04) 1px, transparent 1px);
-      background-size: 40px 40px; animation: gridPulse 8s ease-in-out infinite;
-    }
+    header { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; padding: 80px 24px 60px; }
+    .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(0,255,231,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,231,0.04) 1px, transparent 1px); background-size: 40px 40px; animation: gridPulse 8s ease-in-out infinite; }
     @keyframes gridPulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
-    .hero-glow {
-      position: absolute; width: 500px; height: 500px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(0,255,231,0.07) 0%, transparent 70%);
-      top: 50%; left: 50%; transform: translate(-50%, -50%); animation: glowPulse 4s ease-in-out infinite;
-    }
-    @keyframes glowPulse {
-      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
-      50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
-    }
+    .hero-glow { position: absolute; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(0,255,231,0.07) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); animation: glowPulse 4s ease-in-out infinite; }
+    @keyframes glowPulse { 0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; } 50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; } }
     .hero-content { position: relative; z-index: 2; text-align: center; max-width: 800px; }
     .hero-photo-wrap { position: relative; display: inline-block; margin-bottom: 28px; }
-    .hero-photo-wrap::before {
-      content: ''; position: absolute; inset: -4px; border-radius: 50%;
-      background: conic-gradient(var(--neon), var(--neon2), var(--neon3), var(--neon));
-      animation: rotateBorder 4s linear infinite; z-index: -1;
-    }
+    .hero-photo-wrap::before { content: ''; position: absolute; inset: -4px; border-radius: 50%; background: conic-gradient(var(--neon), var(--neon2), var(--neon3), var(--neon)); animation: rotateBorder 4s linear infinite; z-index: -1; }
     @keyframes rotateBorder { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     .hero-photo-wrap::after { content: ''; position: absolute; inset: -1px; border-radius: 50%; background: var(--bg); z-index: -1; }
     .hero-photo { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; display: block; position: relative; }
@@ -107,14 +55,14 @@
     .cursor { display: inline-block; width: 2px; height: 16px; background: var(--neon); vertical-align: middle; animation: blink 0.8s step-end infinite; }
     @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-    .hire-banner {
-      background: linear-gradient(135deg, rgba(0,255,231,0.06) 0%, rgba(123,47,255,0.06) 100%);
-      border: 1px solid rgba(0,255,231,0.2); border-radius: 12px; padding: 20px 28px;
-      margin-bottom: 32px; text-align: left; opacity: 0; animation: fadeUp 0.6s ease forwards 0.9s;
-    }
+    .hire-banner { background: linear-gradient(135deg, rgba(0,255,231,0.06) 0%, rgba(123,47,255,0.06) 100%); border: 1px solid rgba(0,255,231,0.2); border-radius: 12px; padding: 20px 28px; margin-bottom: 32px; text-align: left; opacity: 0; animation: fadeUp 0.6s ease forwards 0.9s; }
     .hire-banner-label { font-family: var(--mono); font-size: 10px; color: var(--neon); letter-spacing: 2px; margin-bottom: 8px; }
     .hire-banner p { font-size: 14px; color: #b0b0c8; line-height: 1.7; }
     .hire-banner strong { color: var(--neon); font-weight: 500; }
+
+    .availability-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(0,255,100,0.08); border: 1px solid rgba(0,255,100,0.3); border-radius: 20px; padding: 6px 16px; font-family: var(--mono); font-size: 11px; color: #00ff64; letter-spacing: 1px; margin-bottom: 20px; }
+    .availability-dot { width: 7px; height: 7px; border-radius: 50%; background: #00ff64; animation: pulse-dot 1.5s ease-in-out infinite; }
+    @keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.3); } }
 
     .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.6s ease forwards 1.1s; }
     .btn { font-family: var(--mono); font-size: 12px; letter-spacing: 1.5px; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; }
@@ -130,10 +78,10 @@
     .section-num { font-family: var(--mono); font-size: 11px; color: var(--muted); }
 
     .about-text { font-size: 16px; color: #b0b0c8; line-height: 1.9; max-width: 760px; }
-    .about-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-top: 36px; }
+    .about-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin-top: 36px; }
     .stat-box { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px; text-align: center; transition: border-color 0.2s; }
     .stat-box:hover { border-color: var(--neon); }
-    .stat-num { font-family: var(--display); font-size: 2rem; font-weight: 700; color: var(--neon); }
+    .stat-num { font-family: var(--display); font-size: 1.8rem; font-weight: 700; color: var(--neon); }
     .stat-label { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 1.5px; margin-top: 4px; }
 
     .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
@@ -146,7 +94,6 @@
     .skill-bar-pct { font-family: var(--mono); font-size: 11px; color: var(--neon); }
     .skill-bar-bg { height: 3px; background: var(--border2); border-radius: 2px; overflow: hidden; }
     .skill-bar-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--neon), var(--neon2)); width: 0; transition: width 1.2s cubic-bezier(0.4,0,0.2,1); }
-
     .tools-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
     .tool-chip { font-family: var(--mono); font-size: 11px; padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border2); color: var(--muted); background: var(--surface); transition: all 0.2s; }
     .tool-chip:hover { border-color: var(--neon); color: var(--neon); background: rgba(0,255,231,0.05); }
@@ -190,10 +137,6 @@
     .ctf-card { background: var(--surface); border: 1px solid rgba(123,47,255,0.3); border-radius: 12px; padding: 28px; }
     .ctf-intro { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-bottom: 20px; line-height: 1.8; }
     .ctf-platforms { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 20px; }
-    .ctf-platform { background: var(--surface2); border: 1px solid var(--border2); border-radius: 8px; padding: 16px; text-align: center; transition: all 0.2s; }
-    .ctf-platform:hover { border-color: var(--neon2); }
-    .ctf-platform-name { font-family: var(--display); font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
-    .ctf-platform-sub { font-family: var(--mono); font-size: 10px; color: var(--muted); }
 
     .github-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
     .github-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
@@ -209,6 +152,43 @@
     .cert-status { font-family: var(--mono); font-size: 10px; letter-spacing: 1px; }
     .cert-status.active { color: var(--neon); }
     .cert-status.progress { color: #eab308; }
+
+    /* CERT PROGRESS BAR */
+    .cert-progress-wrap { margin-top: 6px; }
+    .cert-progress-bar { height: 3px; background: var(--border2); border-radius: 2px; overflow: hidden; margin-top: 4px; }
+    .cert-progress-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, #eab308, #f97316); }
+
+    /* ROADMAP */
+    .roadmap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    .roadmap-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; transition: border-color 0.2s, transform 0.2s; }
+    .roadmap-card:hover { border-color: rgba(0,255,231,0.3); transform: translateY(-2px); }
+    .roadmap-card.done { border-color: rgba(0,255,100,0.3); }
+    .roadmap-card.active { border-color: rgba(0,255,231,0.4); }
+    .roadmap-card.upcoming { border-color: rgba(123,47,255,0.3); }
+    .roadmap-status { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; margin-bottom: 10px; }
+    .roadmap-status.done { color: #00ff64; }
+    .roadmap-status.active { color: var(--neon); }
+    .roadmap-status.upcoming { color: var(--neon2); }
+    .roadmap-title { font-family: var(--display); font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+    .roadmap-desc { font-family: var(--mono); font-size: 10px; color: var(--muted); line-height: 1.6; }
+
+    /* CURRENTLY LEARNING */
+    .learning-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+    .learning-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; transition: border-color 0.2s; }
+    .learning-card:hover { border-color: rgba(0,255,231,0.3); }
+    .learning-label { font-family: var(--mono); font-size: 9px; color: var(--neon); letter-spacing: 2px; margin-bottom: 6px; }
+    .learning-title { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+    .learning-sub { font-family: var(--mono); font-size: 10px; color: var(--muted); }
+
+    /* WRITEUPS */
+    .writeup-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 10px; transition: border-color 0.2s, transform 0.2s; }
+    .writeup-card:hover { border-color: rgba(0,255,231,0.25); transform: translateY(-2px); }
+    .writeup-placeholder { border-style: dashed; opacity: 0.6; }
+    .writeup-tag { font-family: var(--mono); font-size: 9px; padding: 2px 8px; border-radius: 3px; display: inline-block; }
+    .writeup-tag.forensics { background: rgba(0,255,231,0.08); color: var(--neon); border: 1px solid rgba(0,255,231,0.2); }
+    .writeup-tag.web { background: rgba(100,100,255,0.1); color: #a0a0ff; border: 1px solid rgba(100,100,255,0.2); }
+    .writeup-tag.thm { background: rgba(255,50,100,0.08); color: #ff6080; border: 1px solid rgba(255,50,100,0.2); }
+    .writeup-tag.crypto { background: rgba(255,165,0,0.08); color: #ffaa44; border: 1px solid rgba(255,165,0,0.2); }
 
     .lang-row { display: flex; gap: 16px; flex-wrap: wrap; }
     .lang-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px 28px; text-align: center; transition: border-color 0.2s; }
@@ -235,7 +215,6 @@
     @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
-
     @media (max-width: 768px) { .nav-links { display: none; } .hero-name { letter-spacing: 2px; } .contact-wrap { grid-template-columns: 1fr; } }
   </style>
 </head>
@@ -249,13 +228,15 @@
       <a href="#projects">projects</a>
       <a href="#experience">experience</a>
       <a href="#ctf">ctf</a>
+      <a href="#writeups">writeups</a>
+      <a href="#roadmap">roadmap</a>
       <a href="#education">education</a>
       <a href="#certifications">certs</a>
-      <a href="#beyond">beyond</a>
       <a href="#contact">contact</a>
     </div>
   </nav>
 
+  <!-- HERO -->
   <header>
     <div class="hero-grid-bg"></div>
     <div class="hero-glow"></div>
@@ -264,14 +245,15 @@
         <img src="ozcan celik pic.jpeg" alt="Ozcan Celik" class="hero-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div style="display:none;width:150px;height:150px;border-radius:50%;background:rgba(0,255,231,0.1);align-items:center;justify-content:center;font-family:var(--display);font-size:2.5rem;font-weight:700;color:var(--neon);">OC</div>
       </div>
-      <div class="hero-tag">// IT SECURITY · ETHICAL HACKING · PENETRATION TESTING</div>
+      <div class="hero-tag">// IT SECURITY & CYBERSECURITY · HELP DESK · NETWORKING</div>
       <h1 class="hero-name">OZCAN <span>CELIK</span></h1>
-      <div class="hero-typing">
-        <span id="typed-text"></span><span class="cursor"></span>
+      <div class="hero-typing"><span id="typed-text"></span><span class="cursor"></span></div>
+      <div style="opacity:0;animation:fadeUp 0.6s ease forwards 0.8s;margin-bottom:20px;">
+        <span class="availability-badge"><span class="availability-dot"></span>OPEN TO INTERNSHIPS — IT SUPPORT & CYBERSECURITY</span>
       </div>
       <div class="hire-banner">
         <div class="hire-banner-label">// WHY HIRE ME</div>
-        <p>I bring <strong>4+ years of real-world technical support</strong> (POS systems, SQL, networking) combined with active cybersecurity practice — <strong>Top 20% globally on TryHackMe</strong>, ADEPT Rank, 7 Badges, 41 Rooms, and 34 picoCTF challenges solved. I'm CPT-eligible, bilingual, and ready to contribute from day one.</p>
+        <p>I bring <strong>4+ years of real-world technical support</strong> (POS systems, SQL, networking) combined with active hands-on cybersecurity practice — <strong>Top 20% globally on TryHackMe</strong> (ADEPT Rank, 7 Badges, 41 Rooms) and 34 picoCTF 2026 challenges solved. CPT-eligible, bilingual, ready to contribute from day one in both IT support and cybersecurity roles.</p>
       </div>
       <div class="hero-btns">
         <a href="https://raw.githubusercontent.com/ozcanceliksf/resume-and-career-docs/main/Ozcan%20Celik%20Resume.pdf" target="_blank" class="btn btn-neon">⬇ RESUME</a>
@@ -290,33 +272,15 @@
       <div class="section-line"></div>
     </div>
     <p class="about-text reveal">
-      IT Security student at Santa Fe College with 4+ years of real-world technical support experience and active hands-on cybersecurity practice. Currently ranked <strong style="color:var(--neon);font-weight:500;">Top 20% globally on TryHackMe</strong> (ADEPT Rank, 7 Badges, 41 Rooms) and solved 34 CTF challenges on picoCTF 2026. Completed EternalBlue (MS17-010) exploitation and full OWASP Top 10 labs. CPT-eligible bilingual professional seeking a <strong style="color:var(--neon);font-weight:500;">cybersecurity or IT internship</strong> in Jacksonville, FL or remote.
+      IT Security student at Santa Fe College with <strong style="color:var(--neon);font-weight:500;">4+ years of real-world technical support experience</strong> and active hands-on cybersecurity practice. Currently ranked <strong style="color:var(--neon);font-weight:500;">Top 20% globally on TryHackMe</strong> (ADEPT Rank, 7 Badges, 41 Rooms) and solved 34 CTF challenges on picoCTF 2026. Completed EternalBlue (MS17-010) exploitation and full OWASP Top 10 labs using Metasploit and Burp Suite. Bilingual (English/Turkish) CPT-eligible professional seeking a <strong style="color:var(--neon);font-weight:500;">cybersecurity or IT Support internship</strong> in Jacksonville, FL or remote.
     </p>
     <div class="about-stats reveal">
-      <div class="stat-box">
-        <div class="stat-num">41</div>
-        <div class="stat-label">THM ROOMS</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num">Top 20%</div>
-        <div class="stat-label">GLOBAL RANK</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num">34</div>
-        <div class="stat-label">CTF SOLVED</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num">3.28</div>
-        <div class="stat-label">PROGRAM GPA</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num">4+</div>
-        <div class="stat-label">YEARS SUPPORT EXP</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num">2</div>
-        <div class="stat-label">LANGUAGES</div>
-      </div>
+      <div class="stat-box"><div class="stat-num">41</div><div class="stat-label">THM ROOMS</div></div>
+      <div class="stat-box"><div class="stat-num">Top 20%</div><div class="stat-label">GLOBAL RANK</div></div>
+      <div class="stat-box"><div class="stat-num">34</div><div class="stat-label">CTF SOLVED</div></div>
+      <div class="stat-box"><div class="stat-num">3.28</div><div class="stat-label">PROGRAM GPA</div></div>
+      <div class="stat-box"><div class="stat-num">4+</div><div class="stat-label">YRS TECH SUPPORT</div></div>
+      <div class="stat-box"><div class="stat-num">3</div><div class="stat-label">LANGUAGES</div></div>
     </div>
   </section>
 
@@ -328,99 +292,41 @@
       <div class="section-line"></div>
     </div>
     <div class="skills-grid">
-
       <div class="skill-group reveal">
         <div class="skill-group-title">// CYBERSECURITY</div>
-        <div class="skill-bar-row">
-          <div class="skill-bar-meta"><span class="skill-bar-name">Penetration Testing</span><span class="skill-bar-pct">72%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="72"></div></div>
-        </div>
-        <div class="skill-bar-row">
-          <div class="skill-bar-meta"><span class="skill-bar-name">Network Security</span><span class="skill-bar-pct">78%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="78"></div></div>
-        </div>
-        <div class="skill-bar-row">
-          <div class="skill-bar-meta"><span class="skill-bar-name">Web Security / OWASP</span><span class="skill-bar-pct">70%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="70"></div></div>
-        </div>
-        <div class="skill-bar-row">
-          <div class="skill-bar-meta"><span class="skill-bar-name">Linux Security</span><span class="skill-bar-pct">75%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="75"></div></div>
-        </div>
-        <div class="skill-bar-row">
-          <div class="skill-bar-meta"><span class="skill-bar-name">CTF / Forensics</span><span class="skill-bar-pct">68%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="68"></div></div>
-        </div>
+        <div class="skill-bar-row"><div class="skill-bar-meta"><span class="skill-bar-name">Penetration Testing</span><span class="skill-bar-pct">72%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-w="72"></div></div></div>
+        <div class="skill-bar-row"><div class="skill-bar-meta"><span class="skill-bar-name">Network Security</span><span class="skill-bar-pct">78%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-w="78"></div></div></div>
+        <div class="skill-bar-row"><div class="skill-bar-meta"><span class="skill-bar-name">Web Security / OWASP</span><span class="skill-bar-pct">70%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-w="70"></div></div></div>
+        <div class="skill-bar-row"><div class="skill-bar-meta"><span class="skill-bar-name">Linux Security</span><span class="skill-bar-pct">75%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-w="75"></div></div></div>
+        <div class="skill-bar-row"><div class="skill-bar-meta"><span class="skill-bar-name">CTF / Forensics</span><span class="skill-bar-pct">68%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-w="68"></div></div></div>
       </div>
-
-      <div class="skill-group reveal">
-        <div class="skill-group-title">// NETWORKING</div>
-        <div class="skill-bar-row">
-          <div class="skill-bar-meta"><span class="skill-bar-name">TCP/IP Fundamentals</span><span class="skill-bar-pct">82%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="82"></div></div>
-        </div>
-        <div class="skill-bar-row">
-          <div class="skill-bar-meta"><span class="skill-bar-name">IP Addressing & Subnetting</span><span class="skill-bar-pct">80%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="80"></div></div>
-        </div>
-        <div class="skill-bar-row">
-          <div class="skill-bar-meta"><span class="skill-bar-name">Firewall / VPN / IDS</span><span class="skill-bar-pct">72%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="72"></div></div>
-        </div>
-        <div class="skill-bar-row">
-          <div class="skill-bar-meta"><span class="skill-bar-name">OSI Model</span><span class="skill-bar-pct">78%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="78"></div></div>
-        </div>
-        <div class="skill-bar-row">
-          <div class="skill-bar-meta"><span class="skill-bar-name">Routing & Switching</span><span class="skill-bar-pct">68%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="68"></div></div>
-        </div>
-      </div>
-
       <div class="skill-group reveal">
         <div class="skill-group-title">// IT SUPPORT</div>
-        <div class="skill-bar-row">
-          <div class="skill-bar-meta"><span class="skill-bar-name">Hardware Troubleshooting</span><span class="skill-bar-pct">88%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="88"></div></div>
-        </div>
-        <div class="skill-bar-row">
-          <div class="skill-bar-meta"><span class="skill-bar-name">Desktop & Laptop Setup</span><span class="skill-bar-pct">85%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="85"></div></div>
-        </div>
-        <div class="skill-bar-row">
-          <div class="skill-bar-meta"><span class="skill-bar-name">Software Troubleshooting</span><span class="skill-bar-pct">82%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="82"></div></div>
-        </div>
-        <div class="skill-bar-row">
-          <div class="skill-bar-meta"><span class="skill-bar-name">Technical Documentation</span><span class="skill-bar-pct">80%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="80"></div></div>
-        </div>
+        <div class="skill-bar-row"><div class="skill-bar-meta"><span class="skill-bar-name">Hardware Troubleshooting</span><span class="skill-bar-pct">88%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-w="88"></div></div></div>
+        <div class="skill-bar-row"><div class="skill-bar-meta"><span class="skill-bar-name">Desktop & Laptop Setup</span><span class="skill-bar-pct">85%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-w="85"></div></div></div>
+        <div class="skill-bar-row"><div class="skill-bar-meta"><span class="skill-bar-name">Software Troubleshooting</span><span class="skill-bar-pct">82%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-w="82"></div></div></div>
+        <div class="skill-bar-row"><div class="skill-bar-meta"><span class="skill-bar-name">Technical Documentation</span><span class="skill-bar-pct">80%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-w="80"></div></div></div>
+        <div class="skill-bar-row"><div class="skill-bar-meta"><span class="skill-bar-name">Printer & Peripheral Config</span><span class="skill-bar-pct">75%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-w="75"></div></div></div>
       </div>
-
+      <div class="skill-group reveal">
+        <div class="skill-group-title">// NETWORKING</div>
+        <div class="skill-bar-row"><div class="skill-bar-meta"><span class="skill-bar-name">TCP/IP Fundamentals</span><span class="skill-bar-pct">82%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-w="82"></div></div></div>
+        <div class="skill-bar-row"><div class="skill-bar-meta"><span class="skill-bar-name">IP Addressing & Subnetting</span><span class="skill-bar-pct">80%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-w="80"></div></div></div>
+        <div class="skill-bar-row"><div class="skill-bar-meta"><span class="skill-bar-name">Firewall / VPN / IDS</span><span class="skill-bar-pct">72%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-w="72"></div></div></div>
+        <div class="skill-bar-row"><div class="skill-bar-meta"><span class="skill-bar-name">OSI Model</span><span class="skill-bar-pct">78%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-w="78"></div></div></div>
+        <div class="skill-bar-row"><div class="skill-bar-meta"><span class="skill-bar-name">Routing & Switching</span><span class="skill-bar-pct">68%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-w="68"></div></div></div>
+      </div>
       <div class="skill-group reveal">
         <div class="skill-group-title">// TOOLS & SYSTEMS</div>
         <div class="tools-wrap">
-          <span class="tool-chip">Nmap</span>
-          <span class="tool-chip">Metasploit</span>
-          <span class="tool-chip">Burp Suite</span>
-          <span class="tool-chip">Wireshark</span>
-          <span class="tool-chip">Gobuster</span>
-          <span class="tool-chip">Kali Linux</span>
-          <span class="tool-chip">Steghide</span>
-          <span class="tool-chip">Linux CLI</span>
-          <span class="tool-chip">Windows Server</span>
-          <span class="tool-chip">Active Directory</span>
-          <span class="tool-chip">VirtualBox</span>
-          <span class="tool-chip">Cisco Packet Tracer</span>
-          <span class="tool-chip">PowerShell</span>
-          <span class="tool-chip">Python</span>
-          <span class="tool-chip">Bash</span>
-          <span class="tool-chip">SQL</span>
-          <span class="tool-chip">Microsoft 365</span>
-          <span class="tool-chip">POS Systems</span>
+          <span class="tool-chip">Nmap</span><span class="tool-chip">Metasploit</span><span class="tool-chip">Burp Suite</span>
+          <span class="tool-chip">Wireshark</span><span class="tool-chip">Gobuster</span><span class="tool-chip">Kali Linux</span>
+          <span class="tool-chip">Steghide</span><span class="tool-chip">Linux CLI</span><span class="tool-chip">Windows Server</span>
+          <span class="tool-chip">Active Directory</span><span class="tool-chip">VirtualBox</span><span class="tool-chip">PowerShell</span>
+          <span class="tool-chip">Cisco Packet Tracer</span><span class="tool-chip">Python</span><span class="tool-chip">Bash</span>
+          <span class="tool-chip">SQL</span><span class="tool-chip">Microsoft 365</span><span class="tool-chip">POS Systems</span>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -432,69 +338,15 @@
       <div class="section-line"></div>
     </div>
     <div class="projects-grid">
-      <div class="project-card reveal">
-        <div class="project-icon">🌐</div>
-        <div class="project-title">Networking Fundamentals Labs</div>
-        <div class="project-desc">Hands-on practice in IP addressing, subnetting, routing, switching, and network troubleshooting using Cisco Packet Tracer.</div>
-        <div class="project-tags"><span class="project-tag">Cisco Packet Tracer</span><span class="project-tag">Subnetting</span><span class="project-tag">Routing</span></div>
-        <a href="https://github.com/ozcanceliksf/networking-fundamentals-labs" target="_blank" class="project-link">VIEW REPO →</a>
-      </div>
-      <div class="project-card reveal">
-        <div class="project-icon">🔒</div>
-        <div class="project-title">Cybersecurity Course Notes</div>
-        <div class="project-desc">Structured notes and summaries on security concepts, threat modeling, and risk mitigation frameworks.</div>
-        <div class="project-tags"><span class="project-tag">Security</span><span class="project-tag">Risk Mgmt</span><span class="project-tag">Threats</span></div>
-        <a href="https://github.com/ozcanceliksf/cybersecurity-course-notes" target="_blank" class="project-link">VIEW REPO →</a>
-      </div>
-      <div class="project-card reveal">
-        <div class="project-icon">💻</div>
-        <div class="project-title">VirtualBox, Linux & Windows Practice</div>
-        <div class="project-desc">System practice using Windows, Linux CLI, and virtual machine environments. VM configuration and OS administration.</div>
-        <div class="project-tags"><span class="project-tag">Linux</span><span class="project-tag">VirtualBox</span><span class="project-tag">VM Admin</span></div>
-        <a href="https://github.com/ozcanceliksf/virtualbox-linux-windows-practice" target="_blank" class="project-link">VIEW REPO →</a>
-      </div>
-      <div class="project-card reveal">
-        <div class="project-icon">🛠️</div>
-        <div class="project-title">Technical Support Projects</div>
-        <div class="project-desc">Troubleshooting notes, IT documentation templates, and help desk support checklists from real-world scenarios.</div>
-        <div class="project-tags"><span class="project-tag">Help Desk</span><span class="project-tag">Documentation</span><span class="project-tag">Support</span></div>
-        <a href="https://github.com/ozcanceliksf/technical-support-projects" target="_blank" class="project-link">VIEW REPO →</a>
-      </div>
-      <div class="project-card reveal">
-        <div class="project-icon">🐍</div>
-        <div class="project-title">Python Programming — COP2002</div>
-        <div class="project-desc">Python exercises from Programming Logic course at Santa Fe College. Includes an IRS Tax Calculator, MAC Address Generator, UNO Card Identifier, and more.</div>
-        <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Functions</span><span class="project-tag">Loops</span><span class="project-tag">Algorithms</span></div>
-        <a href="https://github.com/ozcanceliksf/python-programming-cop2002" target="_blank" class="project-link">VIEW REPO →</a>
-      </div>
-      <div class="project-card reveal">
-        <div class="project-icon">⚔️</div>
-        <div class="project-title">Ethical Hacking — CIS2352</div>
-        <div class="project-desc">Hands-on penetration testing labs covering reconnaissance, exploitation, network attacks, and social engineering using Nmap, Metasploit, Hashcat, Scapy and more.</div>
-        <div class="project-tags"><span class="project-tag">Kali Linux</span><span class="project-tag">Nmap</span><span class="project-tag">Metasploit</span><span class="project-tag">PenTest+</span></div>
-        <a href="https://github.com/ozcanceliksf/ethical-hacking-cis2352" target="_blank" class="project-link">VIEW REPO →</a>
-      </div>
-      <div class="project-card reveal">
-        <div class="project-icon">🛡️</div>
-        <div class="project-title">Computer & Network Security — CET2661C</div>
-        <div class="project-desc">Security+ aligned labs covering cryptography, vulnerability management, IAM, security architecture, enterprise infrastructure, and threat detection using Ascend Security+ platform.</div>
-        <div class="project-tags"><span class="project-tag">Security+</span><span class="project-tag">Cryptography</span><span class="project-tag">IAM</span><span class="project-tag">Vulnerability Mgmt</span></div>
-        <a href="https://github.com/ozcanceliksf/computer-network-security-cet2661c" target="_blank" class="project-link">VIEW REPO →</a>
-      </div>
-      <div class="project-card reveal">
-        <div class="project-icon">🔥</div>
-        <div class="project-title">Network Security Advanced — CET2883C</div>
-        <div class="project-desc">Advanced network security covering firewall configuration, VPNs, ACLs, IDS/IPS, RADIUS authentication, PKI, and enterprise network defense strategies.</div>
-        <div class="project-tags"><span class="project-tag">Firewall</span><span class="project-tag">VPN</span><span class="project-tag">IDS/IPS</span><span class="project-tag">PKI</span></div>
-        <a href="https://github.com/ozcanceliksf/network-security-advanced-cet2883c" target="_blank" class="project-link">VIEW REPO →</a>
-      </div>
-      <div class="project-card reveal">
-        <div class="project-icon">🌍</div>
-        <div class="project-title">Web Authoring 1 — CGS1820</div>
-        <div class="project-desc">HTML & CSS projects from Web Authoring course. Covers tables, links, images, CSS methods, float layout, Google Fonts, debugging, and responsive design.</div>
-        <div class="project-tags"><span class="project-tag">HTML5</span><span class="project-tag">CSS3</span><span class="project-tag">Google Fonts</span><span class="project-tag">Responsive</span></div>
-        <a href="https://github.com/ozcanceliksf/web-authoring-cgs1820" target="_blank" class="project-link">VIEW REPO →</a>
-      </div>
+      <div class="project-card reveal"><div class="project-icon">⚔️</div><div class="project-title">Ethical Hacking — CIS2352</div><div class="project-desc">Hands-on penetration testing labs covering reconnaissance, exploitation, network attacks, and social engineering using Nmap, Metasploit, Hashcat, Scapy and more.</div><div class="project-tags"><span class="project-tag">Kali Linux</span><span class="project-tag">Nmap</span><span class="project-tag">Metasploit</span><span class="project-tag">PenTest+</span></div><a href="https://github.com/ozcanceliksf/ethical-hacking-cis2352" target="_blank" class="project-link">VIEW REPO →</a></div>
+      <div class="project-card reveal"><div class="project-icon">🛡️</div><div class="project-title">Computer & Network Security — CET2661C</div><div class="project-desc">Security+ aligned labs covering cryptography, vulnerability management, IAM, security architecture, enterprise infrastructure, and threat detection using Ascend Security+ platform.</div><div class="project-tags"><span class="project-tag">Security+</span><span class="project-tag">Cryptography</span><span class="project-tag">IAM</span><span class="project-tag">Vulnerability Mgmt</span></div><a href="https://github.com/ozcanceliksf/computer-network-security-cet2661c" target="_blank" class="project-link">VIEW REPO →</a></div>
+      <div class="project-card reveal"><div class="project-icon">🔥</div><div class="project-title">Network Security Advanced — CET2883C</div><div class="project-desc">Advanced network security covering firewall configuration, VPNs, ACLs, IDS/IPS, RADIUS authentication, PKI, and enterprise network defense strategies.</div><div class="project-tags"><span class="project-tag">Firewall</span><span class="project-tag">VPN</span><span class="project-tag">IDS/IPS</span><span class="project-tag">PKI</span></div><a href="https://github.com/ozcanceliksf/network-security-advanced-cet2883c" target="_blank" class="project-link">VIEW REPO →</a></div>
+      <div class="project-card reveal"><div class="project-icon">📡</div><div class="project-title">Networking Fundamentals Labs</div><div class="project-desc">Hands-on practice in IP addressing, subnetting, routing, switching, and network troubleshooting using Cisco Packet Tracer.</div><div class="project-tags"><span class="project-tag">Cisco Packet Tracer</span><span class="project-tag">Subnetting</span><span class="project-tag">Routing</span></div><a href="https://github.com/ozcanceliksf/networking-fundamentals-labs" target="_blank" class="project-link">VIEW REPO →</a></div>
+      <div class="project-card reveal"><div class="project-icon">🔒</div><div class="project-title">Cybersecurity Course Notes</div><div class="project-desc">Structured notes and summaries on security concepts, threat modeling, CIA Triad, encryption, and risk mitigation frameworks.</div><div class="project-tags"><span class="project-tag">Security</span><span class="project-tag">Risk Mgmt</span><span class="project-tag">Threats</span></div><a href="https://github.com/ozcanceliksf/cybersecurity-course-notes" target="_blank" class="project-link">VIEW REPO →</a></div>
+      <div class="project-card reveal"><div class="project-icon">🐍</div><div class="project-title">Python Programming — COP2002</div><div class="project-desc">Python exercises from Programming Logic course. Includes IRS Tax Calculator, MAC Address Generator, UNO Card Identifier, and more.</div><div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Functions</span><span class="project-tag">Algorithms</span></div><a href="https://github.com/ozcanceliksf/python-programming-cop2002" target="_blank" class="project-link">VIEW REPO →</a></div>
+      <div class="project-card reveal"><div class="project-icon">💻</div><div class="project-title">VirtualBox, Linux & Windows Practice</div><div class="project-desc">System administration labs using Windows Server, Linux CLI, and virtual machine environments. VM configuration and OS admin.</div><div class="project-tags"><span class="project-tag">Linux</span><span class="project-tag">VirtualBox</span><span class="project-tag">Windows Server</span></div><a href="https://github.com/ozcanceliksf/virtualbox-linux-windows-practice" target="_blank" class="project-link">VIEW REPO →</a></div>
+      <div class="project-card reveal"><div class="project-icon">🛠️</div><div class="project-title">Technical Support Projects</div><div class="project-desc">Help desk documentation, troubleshooting templates, and IT support checklists from real-world scenarios.</div><div class="project-tags"><span class="project-tag">Help Desk</span><span class="project-tag">Documentation</span><span class="project-tag">Support</span></div><a href="https://github.com/ozcanceliksf/technical-support-projects" target="_blank" class="project-link">VIEW REPO →</a></div>
+      <div class="project-card reveal"><div class="project-icon">🌍</div><div class="project-title">Web Authoring 1 — CGS1820</div><div class="project-desc">HTML & CSS projects covering responsive design, Google Fonts, float layout, and CSS methods.</div><div class="project-tags"><span class="project-tag">HTML5</span><span class="project-tag">CSS3</span><span class="project-tag">Responsive</span></div><a href="https://github.com/ozcanceliksf/web-authoring-cgs1820" target="_blank" class="project-link">VIEW REPO →</a></div>
     </div>
   </section>
 
@@ -508,10 +360,7 @@
     <div class="timeline">
       <div class="timeline-item reveal">
         <div class="timeline-dot"></div>
-        <div class="timeline-header">
-          <span class="timeline-title">Student Office Assistant</span>
-          <span class="timeline-date">SEP 2024 – DEC 2024</span>
-        </div>
+        <div class="timeline-header"><span class="timeline-title">Student Office Assistant</span><span class="timeline-date">SEP 2024 – DEC 2024</span></div>
         <div class="timeline-company">Santa Fe College – Health Sciences · Gainesville, FL</div>
         <ul class="timeline-ul">
           <li>Supported administrative and basic technical tasks in an academic healthcare environment.</li>
@@ -521,29 +370,22 @@
       </div>
       <div class="timeline-item reveal">
         <div class="timeline-dot"></div>
-        <div class="timeline-header">
-          <span class="timeline-title">Technical Support Specialist — POS Systems</span>
-          <span class="timeline-date">2012 – 2016</span>
-        </div>
+        <div class="timeline-header"><span class="timeline-title">Technical Support Specialist — POS Systems</span><span class="timeline-date">2012 – 2016</span></div>
         <div class="timeline-company">Posmatik · Turkey</div>
         <ul class="timeline-ul">
           <li>Installed and configured POS systems for 20+ restaurant and retail businesses.</li>
           <li>Diagnosed and resolved network connectivity issues including IP configuration errors.</li>
           <li>Troubleshot SQL database issues affecting transaction and accounting systems.</li>
-          <li>Trained users on POS system operations and daily support procedures.</li>
+          <li>Trained business staff on POS system operations and daily support procedures.</li>
         </ul>
       </div>
       <div class="timeline-item reveal">
         <div class="timeline-dot"></div>
-        <div class="timeline-header">
-          <span class="timeline-title">Digital Systems & Operations Support</span>
-          <span class="timeline-date">2021 – 2023</span>
-        </div>
+        <div class="timeline-header"><span class="timeline-title">Digital Systems & Operations Support</span><span class="timeline-date">2021 – 2023</span></div>
         <div class="timeline-company">TDT Organization · Turkey</div>
         <ul class="timeline-ul">
-          <li>Conducted research on visa programs across U.S., Canada, and European countries.</li>
           <li>Organized structured data and documentation using Excel-based tracking systems.</li>
-          <li>Developed internal information resources to support visa advisory operations.</li>
+          <li>Developed internal information resources to support advisory operations.</li>
           <li>Managed digital communication and informational content for international clients.</li>
         </ul>
       </div>
@@ -558,7 +400,7 @@
       <div class="section-line"></div>
     </div>
     <div class="ctf-card reveal">
-      <div class="ctf-intro">// Actively building hands-on offensive and defensive security skills through structured learning paths and CTF challenges.<br>// ADEPT Rank · Top 20% Globally · 7 Badges · 41 Rooms Completed · 34 picoCTF Challenges Solved</div>
+      <div class="ctf-intro">// Actively building hands-on offensive and defensive security skills through structured learning paths and CTF challenges.<br>// ADEPT Rank · Top 20% Globally · 7 Badges · 41 Rooms · 34 picoCTF 2026 Challenges Solved</div>
 
       <!-- TryHackMe -->
       <div style="margin-bottom:24px;">
@@ -566,32 +408,18 @@
         <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start;">
           <img src="https://tryhackme-badges.s3.amazonaws.com/ozcanceliksf.png" alt="TryHackMe Badge" style="height:80px;border-radius:8px;border:1px solid rgba(0,255,231,0.2);display:block;flex-shrink:0;" onerror="this.style.display='none'">
           <div style="flex:1;min-width:200px;">
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;">
-              <div style="background:rgba(0,255,231,0.05);border:1px solid rgba(0,255,231,0.15);border-radius:8px;padding:12px;text-align:center;">
-                <div style="font-family:var(--display);font-size:1.6rem;font-weight:700;color:var(--neon);">41</div>
-                <div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:1.5px;margin-top:2px;">ROOMS DONE</div>
-              </div>
-              <div style="background:rgba(0,255,231,0.05);border:1px solid rgba(0,255,231,0.15);border-radius:8px;padding:12px;text-align:center;">
-                <div style="font-family:var(--display);font-size:1.6rem;font-weight:700;color:var(--neon);">Top 20%</div>
-                <div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:1.5px;margin-top:2px;">GLOBAL RANK</div>
-              </div>
-              <div style="background:rgba(0,255,231,0.05);border:1px solid rgba(0,255,231,0.15);border-radius:8px;padding:12px;text-align:center;">
-                <div style="font-family:var(--display);font-size:1.6rem;font-weight:700;color:var(--neon);">7</div>
-                <div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:1.5px;margin-top:2px;">BADGES</div>
-              </div>
-              <div style="background:rgba(0,255,231,0.05);border:1px solid rgba(0,255,231,0.15);border-radius:8px;padding:12px;text-align:center;">
-                <div style="font-family:var(--display);font-size:1.4rem;font-weight:700;color:var(--neon);">ADEPT</div>
-                <div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:1.5px;margin-top:2px;">RANK</div>
-              </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;">
+              <div style="background:rgba(0,255,231,0.05);border:1px solid rgba(0,255,231,0.15);border-radius:8px;padding:12px;text-align:center;"><div style="font-family:var(--display);font-size:1.5rem;font-weight:700;color:var(--neon);">41</div><div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:1.5px;margin-top:2px;">ROOMS DONE</div></div>
+              <div style="background:rgba(0,255,231,0.05);border:1px solid rgba(0,255,231,0.15);border-radius:8px;padding:12px;text-align:center;"><div style="font-family:var(--display);font-size:1.5rem;font-weight:700;color:var(--neon);">Top 20%</div><div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:1.5px;margin-top:2px;">GLOBAL RANK</div></div>
+              <div style="background:rgba(0,255,231,0.05);border:1px solid rgba(0,255,231,0.15);border-radius:8px;padding:12px;text-align:center;"><div style="font-family:var(--display);font-size:1.5rem;font-weight:700;color:var(--neon);">7</div><div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:1.5px;margin-top:2px;">BADGES</div></div>
+              <div style="background:rgba(0,255,231,0.05);border:1px solid rgba(0,255,231,0.15);border-radius:8px;padding:12px;text-align:center;"><div style="font-family:var(--display);font-size:1.3rem;font-weight:700;color:var(--neon);">ADEPT</div><div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:1.5px;margin-top:2px;">RANK</div></div>
             </div>
           </div>
         </div>
         <div style="margin-top:14px;">
-          <a href="https://tryhackme.com/p/ozcanceliksf" target="_blank" class="btn btn-neon" style="margin-top:4px;margin-bottom:14px;display:inline-flex;">VIEW THM PROFILE →</a>
+          <a href="https://tryhackme.com/p/ozcanceliksf" target="_blank" class="btn btn-neon" style="margin-bottom:14px;display:inline-flex;">VIEW THM PROFILE →</a>
           <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:6px;">Badges Earned</div>
-          <div style="font-family:var(--mono);font-size:10px;color:rgba(0,255,231,0.6);line-height:1.8;">
-            ✓ Webbed &nbsp;·&nbsp; ✓ World Wide Web &nbsp;·&nbsp; ✓ cat linux.txt &nbsp;·&nbsp; ✓ Blue &nbsp;·&nbsp; ✓ Cyber Ready (Rare 8.6%) &nbsp;·&nbsp; ✓ OWASP Top 10 &nbsp;·&nbsp; ✓ 3 Day Streak
-          </div>
+          <div style="font-family:var(--mono);font-size:10px;color:rgba(0,255,231,0.6);line-height:2;">✓ Webbed &nbsp;·&nbsp; ✓ World Wide Web &nbsp;·&nbsp; ✓ cat linux.txt &nbsp;·&nbsp; ✓ Blue &nbsp;·&nbsp; ✓ Cyber Ready (Rare 8.6%) &nbsp;·&nbsp; ✓ OWASP Top 10 &nbsp;·&nbsp; ✓ 3 Day Streak</div>
         </div>
       </div>
 
@@ -601,106 +429,85 @@
         <div style="background:rgba(159,239,0,0.04);border:1px solid rgba(159,239,0,0.2);border-radius:10px;padding:18px;">
           <div style="font-family:var(--display);font-size:16px;font-weight:600;color:#e8e8f0;margin-bottom:8px;">Active Profile & Labs</div>
           <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:12px;">Verified skills: System Exploitation · Web Site Structure Discovery · Network Sniffing · Reconnaissance · Linux Capabilities</div>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;">
-            <a href="https://app.hackthebox.com/profile/ozcanceliksf" target="_blank" class="btn btn-ghost" style="font-size:11px;padding:8px 16px;border-color:rgba(159,239,0,0.3);color:#9fef00;">HTB MAIN PROFILE ↗</a>
-          </div>
+          <a href="https://app.hackthebox.com/profile/ozcanceliksf" target="_blank" class="btn btn-ghost" style="font-size:11px;padding:8px 16px;border-color:rgba(159,239,0,0.3);color:#9fef00;">HTB PROFILE ↗</a>
         </div>
       </div>
 
       <!-- Platform pills -->
       <div class="ctf-platforms">
-        <a href="https://tryhackme.com/p/ozcanceliksf" target="_blank" class="ctf-platform" style="border-color:rgba(0,255,231,0.3);text-decoration:none;cursor:pointer;transition:border-color 0.2s,transform 0.2s;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(0,255,231,0.7)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(0,255,231,0.3)'">
-          <div class="ctf-platform-name" style="color:var(--neon);">TryHackMe</div>
-          <div class="ctf-platform-sub">tryhackme.com/p/ozcanceliksf</div>
-          <div style="font-family:var(--mono);font-size:10px;color:var(--neon);margin-top:4px;letter-spacing:1px;">● ACTIVE ↗</div>
+        <a href="https://tryhackme.com/p/ozcanceliksf" target="_blank" style="background:var(--surface2);border:1px solid rgba(0,255,231,0.3);border-radius:8px;padding:16px;text-align:center;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(0,255,231,0.7)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(0,255,231,0.3)'">
+          <div style="font-family:var(--display);font-size:16px;font-weight:600;color:var(--neon);">TryHackMe</div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--muted);">tryhackme.com/p/ozcanceliksf</div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--neon);margin-top:4px;">● ACTIVE ↗</div>
         </a>
-        <a href="https://app.hackthebox.com/profile/ozcanceliksf" target="_blank" class="ctf-platform" style="border-color:rgba(159,239,0,0.3);text-decoration:none;cursor:pointer;transition:border-color 0.2s,transform 0.2s;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(159,239,0,0.7)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(159,239,0,0.3)'">
-          <div class="ctf-platform-name" style="color:#9fef00;">HackTheBox</div>
-          <div class="ctf-platform-sub">app.hackthebox.com</div>
-          <div style="font-family:var(--mono);font-size:10px;color:#9fef00;margin-top:4px;letter-spacing:1px;">● ACTIVE ↗</div>
+        <a href="https://app.hackthebox.com/profile/ozcanceliksf" target="_blank" style="background:var(--surface2);border:1px solid rgba(159,239,0,0.3);border-radius:8px;padding:16px;text-align:center;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(159,239,0,0.7)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(159,239,0,0.3)'">
+          <div style="font-family:var(--display);font-size:16px;font-weight:600;color:#9fef00;">HackTheBox</div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--muted);">app.hackthebox.com</div>
+          <div style="font-family:var(--mono);font-size:10px;color:#9fef00;margin-top:4px;">● ACTIVE ↗</div>
         </a>
-        <a href="https://play.picoctf.org/users/ozcanceliksf" target="_blank" class="ctf-platform" style="border-color:rgba(0,255,231,0.3);text-decoration:none;cursor:pointer;transition:border-color 0.2s,transform 0.2s;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(0,255,231,0.7)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(0,255,231,0.3)'">
-          <div class="ctf-platform-name" style="color:var(--neon);">PicoCTF</div>
-          <div class="ctf-platform-sub">picoctf.org</div>
-          <div style="font-family:var(--mono);font-size:10px;color:var(--neon);margin-top:4px;letter-spacing:1px;">● ACTIVE ↗</div>
+        <a href="https://play.picoctf.org/users/ozcanceliksf" target="_blank" style="background:var(--surface2);border:1px solid rgba(0,255,231,0.3);border-radius:8px;padding:16px;text-align:center;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(0,255,231,0.7)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(0,255,231,0.3)'">
+          <div style="font-family:var(--display);font-size:16px;font-weight:600;color:var(--neon);">PicoCTF</div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--muted);">picoctf.org</div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--neon);margin-top:4px;">● ACTIVE ↗</div>
         </a>
       </div>
 
       <!-- PicoCTF Stats -->
       <div style="margin-top:28px;">
         <div style="font-family:var(--mono);font-size:10px;color:var(--neon);letter-spacing:2px;margin-bottom:14px;">// PICOCTF 2026 — SOLVED CHALLENGES</div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:20px;">
-          <div style="background:rgba(0,255,231,0.05);border:1px solid rgba(0,255,231,0.15);border-radius:8px;padding:14px;text-align:center;">
-            <div style="font-family:var(--display);font-size:1.8rem;font-weight:700;color:var(--neon);">34</div>
-            <div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:1px;margin-top:2px;">TOTAL SOLVED</div>
-          </div>
-          <div style="background:rgba(0,255,231,0.05);border:1px solid rgba(0,255,231,0.15);border-radius:8px;padding:14px;text-align:center;">
-            <div style="font-family:var(--display);font-size:1.8rem;font-weight:700;color:var(--neon);">23</div>
-            <div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:1px;margin-top:2px;">EASY</div>
-          </div>
-          <div style="background:rgba(0,255,231,0.05);border:1px solid rgba(255,165,0,0.3);border-radius:8px;padding:14px;text-align:center;">
-            <div style="font-family:var(--display);font-size:1.8rem;font-weight:700;color:#ffaa00;">11</div>
-            <div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:1px;margin-top:2px;">MEDIUM</div>
-          </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:20px;">
+          <div style="background:rgba(0,255,231,0.05);border:1px solid rgba(0,255,231,0.15);border-radius:8px;padding:14px;text-align:center;"><div style="font-family:var(--display);font-size:1.8rem;font-weight:700;color:var(--neon);">34</div><div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:1px;margin-top:2px;">TOTAL SOLVED</div></div>
+          <div style="background:rgba(0,255,231,0.05);border:1px solid rgba(0,255,231,0.15);border-radius:8px;padding:14px;text-align:center;"><div style="font-family:var(--display);font-size:1.8rem;font-weight:700;color:var(--neon);">23</div><div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:1px;margin-top:2px;">EASY</div></div>
+          <div style="background:rgba(0,255,231,0.05);border:1px solid rgba(255,165,0,0.3);border-radius:8px;padding:14px;text-align:center;"><div style="font-family:var(--display);font-size:1.8rem;font-weight:700;color:#ffaa00;">11</div><div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:1px;margin-top:2px;">MEDIUM</div></div>
         </div>
-
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;">
-          <div style="background:rgba(0,255,231,0.04);border:1px solid rgba(0,255,231,0.15);border-radius:8px;padding:14px;">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-              <span style="font-family:var(--display);font-size:13px;font-weight:600;color:#e8e8f0;">Riddle Registry</span>
-              <span style="font-family:var(--mono);font-size:9px;background:rgba(0,255,231,0.1);color:var(--neon);padding:2px 8px;border-radius:4px;">Forensics</span>
-            </div>
-            <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:6px;">PDF metadata analysis · Base64 decoding</div>
-            <div style="font-family:var(--mono);font-size:10px;color:rgba(0,255,231,0.5);">✓ SOLVED · Easy</div>
-          </div>
-          <div style="background:rgba(0,255,231,0.04);border:1px solid rgba(0,255,231,0.15);border-radius:8px;padding:14px;">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-              <span style="font-family:var(--display);font-size:13px;font-weight:600;color:#e8e8f0;">Log Hunt</span>
-              <span style="font-family:var(--mono);font-size:9px;background:rgba(0,255,231,0.1);color:var(--neon);padding:2px 8px;border-radius:4px;">General Skills</span>
-            </div>
-            <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:6px;">Server log analysis · Flag fragment reconstruction</div>
-            <div style="font-family:var(--mono);font-size:10px;color:rgba(0,255,231,0.5);">✓ SOLVED · Easy</div>
-          </div>
-          <div style="background:rgba(0,255,231,0.04);border:1px solid rgba(0,255,231,0.15);border-radius:8px;padding:14px;">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-              <span style="font-family:var(--display);font-size:13px;font-weight:600;color:#e8e8f0;">Hidden in Plainsight</span>
-              <span style="font-family:var(--mono);font-size:9px;background:rgba(0,255,231,0.1);color:var(--neon);padding:2px 8px;border-radius:4px;">Forensics</span>
-            </div>
-            <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:6px;">Steganography · Steghide · Base64 → PNG → Hex</div>
-            <div style="font-family:var(--mono);font-size:10px;color:rgba(0,255,231,0.5);">✓ SOLVED · Easy</div>
-          </div>
-          <div style="background:rgba(0,255,231,0.04);border:1px solid rgba(0,255,231,0.15);border-radius:8px;padding:14px;">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-              <span style="font-family:var(--display);font-size:13px;font-weight:600;color:#e8e8f0;">Corrupted File</span>
-              <span style="font-family:var(--mono);font-size:9px;background:rgba(0,255,231,0.1);color:var(--neon);padding:2px 8px;border-radius:4px;">Forensics</span>
-            </div>
-            <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:6px;">JPEG magic bytes repair · Hex editor · File signatures</div>
-            <div style="font-family:var(--mono);font-size:10px;color:rgba(0,255,231,0.5);">✓ SOLVED · Easy</div>
-          </div>
-          <div style="background:rgba(0,255,231,0.04);border:1px solid rgba(0,255,231,0.15);border-radius:8px;padding:14px;">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-              <span style="font-family:var(--display);font-size:13px;font-weight:600;color:#e8e8f0;">Crack the Gate 1</span>
-              <span style="font-family:var(--mono);font-size:9px;background:rgba(100,100,255,0.15);color:#a0a0ff;padding:2px 8px;border-radius:4px;">Web Exploitation</span>
-            </div>
-            <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:6px;">ROT13 decoding · HTTP header injection · curl</div>
-            <div style="font-family:var(--mono);font-size:10px;color:rgba(0,255,231,0.5);">✓ SOLVED · Easy</div>
-          </div>
-          <div style="background:rgba(0,255,231,0.04);border:1px solid rgba(0,255,231,0.15);border-radius:8px;padding:14px;">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-              <span style="font-family:var(--display);font-size:13px;font-weight:600;color:#e8e8f0;">SSTI Challenge</span>
-              <span style="font-family:var(--mono);font-size:9px;background:rgba(100,100,255,0.15);color:#a0a0ff;padding:2px 8px;border-radius:4px;">Web Exploitation</span>
-            </div>
-            <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:6px;">Jinja2 SSTI · Remote code execution · Flask</div>
-            <div style="font-family:var(--mono);font-size:10px;color:rgba(0,255,231,0.5);">✓ SOLVED · Easy</div>
-          </div>
+          <div style="background:rgba(0,255,231,0.04);border:1px solid rgba(0,255,231,0.15);border-radius:8px;padding:14px;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><span style="font-family:var(--display);font-size:13px;font-weight:600;color:#e8e8f0;">Riddle Registry</span><span style="font-family:var(--mono);font-size:9px;background:rgba(0,255,231,0.1);color:var(--neon);padding:2px 8px;border-radius:4px;">Forensics</span></div><div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:6px;">PDF metadata analysis · Base64 decoding</div><div style="font-family:var(--mono);font-size:10px;color:rgba(0,255,231,0.5);">✓ SOLVED · Easy</div></div>
+          <div style="background:rgba(0,255,231,0.04);border:1px solid rgba(0,255,231,0.15);border-radius:8px;padding:14px;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><span style="font-family:var(--display);font-size:13px;font-weight:600;color:#e8e8f0;">Log Hunt</span><span style="font-family:var(--mono);font-size:9px;background:rgba(0,255,231,0.1);color:var(--neon);padding:2px 8px;border-radius:4px;">General Skills</span></div><div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:6px;">Server log analysis · Flag fragment reconstruction</div><div style="font-family:var(--mono);font-size:10px;color:rgba(0,255,231,0.5);">✓ SOLVED · Easy</div></div>
+          <div style="background:rgba(0,255,231,0.04);border:1px solid rgba(0,255,231,0.15);border-radius:8px;padding:14px;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><span style="font-family:var(--display);font-size:13px;font-weight:600;color:#e8e8f0;">Hidden in Plainsight</span><span style="font-family:var(--mono);font-size:9px;background:rgba(0,255,231,0.1);color:var(--neon);padding:2px 8px;border-radius:4px;">Forensics</span></div><div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:6px;">Steganography · Steghide · Base64 → PNG → Hex</div><div style="font-family:var(--mono);font-size:10px;color:rgba(0,255,231,0.5);">✓ SOLVED · Easy</div></div>
+          <div style="background:rgba(0,255,231,0.04);border:1px solid rgba(0,255,231,0.15);border-radius:8px;padding:14px;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><span style="font-family:var(--display);font-size:13px;font-weight:600;color:#e8e8f0;">Corrupted File</span><span style="font-family:var(--mono);font-size:9px;background:rgba(0,255,231,0.1);color:var(--neon);padding:2px 8px;border-radius:4px;">Forensics</span></div><div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:6px;">JPEG magic bytes repair · Hex editor · File signatures</div><div style="font-family:var(--mono);font-size:10px;color:rgba(0,255,231,0.5);">✓ SOLVED · Easy</div></div>
+          <div style="background:rgba(0,255,231,0.04);border:1px solid rgba(0,255,231,0.15);border-radius:8px;padding:14px;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><span style="font-family:var(--display);font-size:13px;font-weight:600;color:#e8e8f0;">Crack the Gate 1</span><span style="font-family:var(--mono);font-size:9px;background:rgba(100,100,255,0.15);color:#a0a0ff;padding:2px 8px;border-radius:4px;">Web Exploitation</span></div><div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:6px;">ROT13 decoding · HTTP header injection · curl</div><div style="font-family:var(--mono);font-size:10px;color:rgba(0,255,231,0.5);">✓ SOLVED · Easy</div></div>
+          <div style="background:rgba(0,255,231,0.04);border:1px solid rgba(0,255,231,0.15);border-radius:8px;padding:14px;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><span style="font-family:var(--display);font-size:13px;font-weight:600;color:#e8e8f0;">SSTI Challenge</span><span style="font-family:var(--mono);font-size:9px;background:rgba(100,100,255,0.15);color:#a0a0ff;padding:2px 8px;border-radius:4px;">Web Exploitation</span></div><div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:6px;">Jinja2 SSTI · Remote code execution · Flask</div><div style="font-family:var(--mono);font-size:10px;color:rgba(0,255,231,0.5);">✓ SOLVED · Easy</div></div>
         </div>
         <div style="margin-top:12px;font-family:var(--mono);font-size:10px;color:var(--muted);">
           <a href="https://play.picoctf.org/users/ozcanceliksf" target="_blank" style="color:var(--neon);text-decoration:none;">→ View full profile on picoCTF (34 challenges solved)</a>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div style="font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.8;margin-top:20px;">
-        // Target skills: Web exploitation · Network forensics · Linux · OSINT · Cryptography · Active Directory
+  <!-- WRITEUPS -->
+  <section class="section" id="writeups">
+    <div class="section-header reveal">
+      <span class="section-num">06</span>
+      <span class="section-title">WRITEUPS</span>
+      <div class="section-line"></div>
+    </div>
+    <div style="font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:24px;line-height:1.8;">// Technical write-ups for TryHackMe rooms and CTF challenges — documenting methodology, tools used, and lessons learned.</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;">
+      <!-- THM Writeups -->
+      <div class="writeup-card writeup-placeholder reveal">
+        <div style="display:flex;justify-content:space-between;align-items:center;"><span class="writeup-tag thm">TryHackMe</span><span style="font-family:var(--mono);font-size:9px;color:var(--muted);">COMING SOON</span></div>
+        <div style="font-family:var(--display);font-size:16px;font-weight:600;color:var(--text);">Blue — EternalBlue (MS17-010)</div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--muted);line-height:1.6;">Exploitation of MS17-010 using Metasploit · Remote shell access · Post-exploitation</div>
+        <div style="font-family:var(--mono);font-size:10px;color:rgba(0,255,231,0.3);">// writeup in progress</div>
+      </div>
+      <div class="writeup-card writeup-placeholder reveal">
+        <div style="display:flex;justify-content:space-between;align-items:center;"><span class="writeup-tag thm">TryHackMe</span><span style="font-family:var(--mono);font-size:9px;color:var(--muted);">COMING SOON</span></div>
+        <div style="font-family:var(--display);font-size:16px;font-weight:600;color:var(--text);">OWASP Top 10</div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--muted);line-height:1.6;">SQLi · XSS · IDOR · SSTI · Broken Auth · Sensitive Data Exposure</div>
+        <div style="font-family:var(--mono);font-size:10px;color:rgba(0,255,231,0.3);">// writeup in progress</div>
+      </div>
+      <div class="writeup-card writeup-placeholder reveal">
+        <div style="display:flex;justify-content:space-between;align-items:center;"><span class="writeup-tag web">Web Exploitation</span><span style="font-family:var(--mono);font-size:9px;color:var(--muted);">COMING SOON</span></div>
+        <div style="font-family:var(--display);font-size:16px;font-weight:600;color:var(--text);">picoCTF — SSTI Challenge</div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--muted);line-height:1.6;">Jinja2 Server-Side Template Injection · Remote code execution · Flask exploitation</div>
+        <div style="font-family:var(--mono);font-size:10px;color:rgba(0,255,231,0.3);">// writeup in progress</div>
+      </div>
+      <div class="writeup-card writeup-placeholder reveal">
+        <div style="display:flex;justify-content:space-between;align-items:center;"><span class="writeup-tag forensics">Forensics</span><span style="font-family:var(--mono);font-size:9px;color:var(--muted);">COMING SOON</span></div>
+        <div style="font-family:var(--display);font-size:16px;font-weight:600;color:var(--text);">picoCTF — Hidden in Plainsight</div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--muted);line-height:1.6;">Steganography · Steghide · Base64 → PNG → Hex decoding chain</div>
+        <div style="font-family:var(--mono);font-size:10px;color:rgba(0,255,231,0.3);">// writeup in progress</div>
       </div>
     </div>
   </section>
@@ -708,39 +515,31 @@
   <!-- GITHUB STATS -->
   <section class="section" id="github">
     <div class="section-header reveal">
-      <span class="section-num">06</span>
+      <span class="section-num">07</span>
       <span class="section-title">GITHUB ACTIVITY</span>
       <div class="section-line"></div>
     </div>
     <div class="github-grid reveal">
-      <div class="github-card">
-        <img src="https://github-readme-stats.vercel.app/api?username=ozcanceliksf&show_icons=true&theme=chartreuse-dark&hide_border=true&bg_color=0c0c10&title_color=00ffe7&icon_color=00ffe7&text_color=a0a0b8" alt="GitHub Stats" loading="lazy">
-      </div>
-      <div class="github-card">
-        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=ozcanceliksf&layout=compact&theme=chartreuse-dark&hide_border=true&bg_color=0c0c10&title_color=00ffe7&text_color=a0a0b8" alt="Top Languages" loading="lazy">
-      </div>
+      <div class="github-card"><img src="https://github-readme-stats.vercel.app/api?username=ozcanceliksf&show_icons=true&theme=chartreuse-dark&hide_border=true&bg_color=0c0c10&title_color=00ffe7&icon_color=00ffe7&text_color=a0a0b8" alt="GitHub Stats" loading="lazy"></div>
+      <div class="github-card"><img src="https://github-readme-stats.vercel.app/api/top-langs/?username=ozcanceliksf&layout=compact&theme=chartreuse-dark&hide_border=true&bg_color=0c0c10&title_color=00ffe7&text_color=a0a0b8&langs_count=8" alt="Top Languages" loading="lazy"></div>
     </div>
     <div class="reveal" style="text-align:center;margin:16px 0 28px;">
       <img src="https://streak-stats.demolab.com?user=ozcanceliksf&theme=dark&hide_border=true&background=0c0c10&ring=00ffe7&fire=00ffe7&currStreakLabel=00ffe7&sideLabels=a0a0b8&dates=a0a0b8&sideNums=e8e8f0&currStreakNum=e8e8f0" alt="GitHub Streak" loading="lazy" style="border-radius:10px;max-width:500px;width:100%;">
     </div>
     <div class="reveal">
-      <div style="font-family:var(--mono);font-size:10px;color:var(--neon);letter-spacing:2px;margin-bottom:16px;">
-        // REPOSITORIES <span id="repo-count" style="color:var(--muted);margin-left:8px;"></span>
-      </div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--neon);letter-spacing:2px;margin-bottom:16px;">// REPOSITORIES <span id="repo-count" style="color:var(--muted);margin-left:8px;"></span></div>
       <div id="github-repos" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;">
         <div style="font-family:var(--mono);font-size:11px;color:var(--muted);padding:20px;grid-column:1/-1;">// Fetching repositories from GitHub...</div>
       </div>
-      <div style="margin-top:16px;">
-        <a href="https://github.com/ozcanceliksf" target="_blank" class="btn btn-ghost" style="font-size:11px;">VIEW ALL ON GITHUB →</a>
-      </div>
+      <div style="margin-top:16px;"><a href="https://github.com/ozcanceliksf" target="_blank" class="btn btn-ghost" style="font-size:11px;">VIEW ALL ON GITHUB →</a></div>
     </div>
     <script>
     (async function() {
       const username = 'ozcanceliksf';
       const container = document.getElementById('github-repos');
       const countEl = document.getElementById('repo-count');
-      const langEmoji = { 'Python': '🐍', 'HTML': '🌐', 'CSS': '🎨', 'JavaScript': '⚡', 'Shell': '💻', 'C': '⚙️', 'Java': '☕', 'null': '📁' };
-      const repoEmoji = { 'networking-fundamentals-labs': '📡', 'cybersecurity-course-notes': '🔐', 'virtualbox-linux-windows-practice': '🖥️', 'technical-support-projects': '🛠️', 'python-programming-cop2002': '🐍', 'ethical-hacking-cis2352': '⚔️', 'computer-network-security-cet2661c': '🔒', 'network-security-advanced-cet2883c': '🛡️', 'web-authoring-cgs1820': '🌐', 'resume-and-career-docs': '📄' };
+      const langEmoji = {'Python':'🐍','HTML':'🌐','CSS':'🎨','JavaScript':'⚡','Shell':'💻','C':'⚙️','Java':'☕','null':'📁'};
+      const repoEmoji = {'networking-fundamentals-labs':'📡','cybersecurity-course-notes':'🔐','virtualbox-linux-windows-practice':'🖥️','technical-support-projects':'🛠️','python-programming-cop2002':'🐍','ethical-hacking-cis2352':'⚔️','computer-network-security-cet2661c':'🔒','network-security-advanced-cet2883c':'🛡️','web-authoring-cgs1820':'🌐','resume-and-career-docs':'📄'};
       try {
         const res = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=12`);
         const repos = await res.json();
@@ -752,14 +551,13 @@
           const emoji = repoEmoji[repo.name] || (langEmoji[repo.language] || '📁');
           const lang = repo.language || 'Docs';
           const stars = repo.stargazers_count;
-          const updated = new Date(repo.updated_at).toLocaleDateString('en-US', {month:'short', year:'numeric'});
+          const updated = new Date(repo.updated_at).toLocaleDateString('en-US',{month:'short',year:'numeric'});
           const card = document.createElement('a');
-          card.href = repo.html_url;
-          card.target = '_blank';
+          card.href = repo.html_url; card.target = '_blank';
           card.style.cssText = 'background:rgba(0,255,231,0.04);border:1px solid rgba(0,255,231,0.15);border-radius:10px;padding:16px;text-decoration:none;transition:border-color 0.2s,transform 0.2s;display:flex;flex-direction:column;gap:8px;';
-          card.onmouseover = () => { card.style.borderColor='rgba(0,255,231,0.4)'; card.style.transform='translateY(-3px)'; };
-          card.onmouseout  = () => { card.style.borderColor='rgba(0,255,231,0.15)'; card.style.transform=''; };
-          card.innerHTML = `<div style="font-family:var(--display);font-size:13px;font-weight:600;color:var(--neon);">${emoji} ${repo.name}</div><div style="font-family:var(--mono);font-size:10px;color:var(--muted);line-height:1.6;flex:1;">${repo.description || 'No description'}</div><div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px;"><span style="font-family:var(--mono);font-size:9px;background:rgba(0,255,231,0.08);color:var(--neon);padding:2px 7px;border-radius:4px;">${lang}</span><span style="font-family:var(--mono);font-size:9px;color:var(--muted);">⭐ ${stars} · ${updated}</span></div>`;
+          card.onmouseover = () => {card.style.borderColor='rgba(0,255,231,0.4)';card.style.transform='translateY(-3px)';};
+          card.onmouseout = () => {card.style.borderColor='rgba(0,255,231,0.15)';card.style.transform='';};
+          card.innerHTML = `<div style="font-family:var(--display);font-size:13px;font-weight:600;color:var(--neon);">${emoji} ${repo.name}</div><div style="font-family:var(--mono);font-size:10px;color:var(--muted);line-height:1.6;flex:1;">${repo.description||'No description'}</div><div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px;"><span style="font-family:var(--mono);font-size:9px;background:rgba(0,255,231,0.08);color:var(--neon);padding:2px 7px;border-radius:4px;">${lang}</span><span style="font-family:var(--mono);font-size:9px;color:var(--muted);">⭐ ${stars} · ${updated}</span></div>`;
           container.appendChild(card);
         });
       } catch(e) {
@@ -769,25 +567,94 @@
     </script>
   </section>
 
+  <!-- ROADMAP -->
+  <section class="section" id="roadmap">
+    <div class="section-header reveal">
+      <span class="section-num">08</span>
+      <span class="section-title">ROADMAP & GOALS</span>
+      <div class="section-line"></div>
+    </div>
+    <div style="font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:28px;line-height:1.8;">// Learning path and career goals — from IT foundations to cybersecurity specialization.</div>
+
+    <div style="font-family:var(--mono);font-size:10px;color:var(--neon);letter-spacing:2px;margin-bottom:16px;">// CURRENTLY LEARNING</div>
+    <div class="learning-grid reveal" style="margin-bottom:40px;">
+      <div class="learning-card"><div class="learning-label">// ACTIVE</div><div class="learning-title">CompTIA Network+</div><div class="learning-sub">Exam prep · In progress</div></div>
+      <div class="learning-card"><div class="learning-label">// ACTIVE</div><div class="learning-title">ISC2 CC (Cybersecurity)</div><div class="learning-sub">Self-study · In progress</div></div>
+      <div class="learning-card"><div class="learning-label">// ACTIVE</div><div class="learning-title">TryHackMe Paths</div><div class="learning-sub">Jr Penetration Tester path</div></div>
+      <div class="learning-card"><div class="learning-label">// ACTIVE</div><div class="learning-title">HackTheBox Labs</div><div class="learning-sub">Hands-on machine exploitation</div></div>
+    </div>
+
+    <div style="font-family:var(--mono);font-size:10px;color:var(--neon);letter-spacing:2px;margin-bottom:16px;">// GOALS</div>
+    <div class="roadmap-grid reveal">
+      <div class="roadmap-card done">
+        <div class="roadmap-status done">✓ COMPLETED</div>
+        <div class="roadmap-title">TryHackMe ADEPT Rank</div>
+        <div class="roadmap-desc">Top 20% · 7 Badges · 41 Rooms</div>
+      </div>
+      <div class="roadmap-card done">
+        <div class="roadmap-status done">✓ COMPLETED</div>
+        <div class="roadmap-title">picoCTF 2026</div>
+        <div class="roadmap-desc">34 challenges solved · Web, Forensics, Crypto</div>
+      </div>
+      <div class="roadmap-card active">
+        <div class="roadmap-status active">⟳ IN PROGRESS</div>
+        <div class="roadmap-title">IT Support Internship</div>
+        <div class="roadmap-desc">CPT-eligible · Jacksonville, FL or remote</div>
+      </div>
+      <div class="roadmap-card active">
+        <div class="roadmap-status active">⟳ IN PROGRESS</div>
+        <div class="roadmap-title">Cybersecurity Internship</div>
+        <div class="roadmap-desc">SOC analyst · pentesting · IT security roles</div>
+      </div>
+      <div class="roadmap-card active">
+        <div class="roadmap-status active">⟳ IN PROGRESS</div>
+        <div class="roadmap-title">CompTIA Network+</div>
+        <div class="roadmap-desc">Target: 2026</div>
+      </div>
+      <div class="roadmap-card active">
+        <div class="roadmap-status active">⟳ IN PROGRESS</div>
+        <div class="roadmap-title">ISC2 CC</div>
+        <div class="roadmap-desc">Certified in Cybersecurity · Target: 2026</div>
+      </div>
+      <div class="roadmap-card upcoming">
+        <div class="roadmap-status upcoming">◎ UPCOMING</div>
+        <div class="roadmap-title">CompTIA Security+</div>
+        <div class="roadmap-desc">Target: 2026</div>
+      </div>
+      <div class="roadmap-card upcoming">
+        <div class="roadmap-status upcoming">◎ UPCOMING</div>
+        <div class="roadmap-title">CEH</div>
+        <div class="roadmap-desc">Certified Ethical Hacker · Target: 2026</div>
+      </div>
+      <div class="roadmap-card upcoming">
+        <div class="roadmap-status upcoming">◎ UPCOMING</div>
+        <div class="roadmap-title">HTB Pro Hacker Rank</div>
+        <div class="roadmap-desc">Advancing through HackTheBox machines</div>
+      </div>
+      <div class="roadmap-card upcoming">
+        <div class="roadmap-status upcoming">◎ FUTURE</div>
+        <div class="roadmap-title">OSCP</div>
+        <div class="roadmap-desc">Offensive Security Certified Professional</div>
+      </div>
+    </div>
+  </section>
+
   <!-- EDUCATION -->
   <section class="section" id="education">
     <div class="section-header reveal">
-      <span class="section-num">07</span>
+      <span class="section-num">09</span>
       <span class="section-title">EDUCATION</span>
       <div class="section-line"></div>
     </div>
     <div class="edu-card reveal">
-      <div class="edu-badge">
-        <div class="edu-badge-gpa">3.28</div>
-        <div class="edu-badge-label">PROGRAM GPA</div>
-      </div>
+      <div class="edu-badge"><div class="edu-badge-gpa">3.28</div><div class="edu-badge-label">PROGRAM GPA</div></div>
       <div class="edu-info">
         <div class="edu-school">Santa Fe College</div>
         <div class="edu-degree">// A.S. IN IT SECURITY · IN PROGRESS · EXP. 2027</div>
         <div class="course-chips">
           <span class="course-chip">Info Security Fundamentals</span>
           <span class="course-chip">Cisco Networking</span>
-          <span class="course-chip">Network Security</span>
+          <span class="course-chip">Network Security Advanced</span>
           <span class="course-chip">Ethical Hacking</span>
           <span class="course-chip">Computer & Network Security</span>
           <span class="course-chip">Programming Logic</span>
@@ -810,18 +677,26 @@
   <!-- CERTIFICATIONS -->
   <section class="section" id="certifications">
     <div class="section-header reveal">
-      <span class="section-num">08</span>
+      <span class="section-num">10</span>
       <span class="section-title">CERTIFICATIONS</span>
       <div class="section-line"></div>
     </div>
     <div class="cert-grid">
       <div class="cert-card reveal">
         <div class="cert-icon progress">🎯</div>
-        <div><div class="cert-name">CompTIA Network+</div><div class="cert-status progress">IN PROGRESS</div></div>
+        <div style="flex:1;">
+          <div class="cert-name">CompTIA Network+</div>
+          <div class="cert-status progress">IN PROGRESS</div>
+          <div class="cert-progress-wrap"><div style="font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:6px;">Study progress</div><div class="cert-progress-bar"><div class="cert-progress-fill" style="width:45%;"></div></div></div>
+        </div>
       </div>
       <div class="cert-card reveal">
         <div class="cert-icon progress">🛡️</div>
-        <div><div class="cert-name">ISC2 Certified in Cybersecurity (CC)</div><div class="cert-status progress">IN PROGRESS</div></div>
+        <div style="flex:1;">
+          <div class="cert-name">ISC2 Certified in Cybersecurity (CC)</div>
+          <div class="cert-status progress">IN PROGRESS</div>
+          <div class="cert-progress-wrap"><div style="font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:6px;">Study progress</div><div class="cert-progress-bar"><div class="cert-progress-fill" style="width:40%;"></div></div></div>
+        </div>
       </div>
       <div class="cert-card reveal">
         <div class="cert-icon active">🕸️</div>
@@ -832,122 +707,48 @@
         <div><div class="cert-name">picoCTF 2026</div><div class="cert-status active">34 CHALLENGES SOLVED</div></div>
       </div>
       <div class="cert-card reveal">
-        <div class="cert-icon active">⚓</div>
-        <div><div class="cert-name">Amateur Sailor's License</div><div class="cert-status active">ACTIVE</div></div>
+        <div class="cert-icon active">🖥️</div>
+        <div><div class="cert-name">HackTheBox</div><div class="cert-status active">ACTIVE PROFILE</div></div>
       </div>
-      <div class="cert-card reveal">
-        <div class="cert-icon active">📡</div>
-        <div><div class="cert-name">Short Range Radio Operator License</div><div class="cert-status active">ACTIVE</div></div>
-      </div>
-      <div class="cert-card reveal">
-        <div class="cert-icon active">🚁</div>
-        <div><div class="cert-name">IHA-0 Drone Pilot Credential</div><div class="cert-status active">ACTIVE</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- BEYOND THE SCREEN -->
-  <section class="section" id="beyond">
-    <div class="section-header reveal">
-      <span class="section-num">09</span>
-      <span class="section-title">BEYOND THE SCREEN</span>
-      <div class="section-line"></div>
-    </div>
-    <div style="font-family:var(--mono);font-size:10px;color:var(--neon);letter-spacing:2px;margin-bottom:16px;">// VENTURES & COMPANIES</div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px;margin-bottom:40px;">
-      <div class="project-card reveal">
-        <div class="project-icon">🎵</div>
-        <div class="project-title">8th Floor Events</div>
-        <div class="project-desc">Founded and operated an event company organizing 19+ electronic music events across Izmir, Istanbul and Ankara. Brought international artists including Stephan Bodzin and Rodriguez Jr. Secured major sponsorships from Anadolu Efes, Tuborg, Olmeca Tequila and Decathlon.</div>
-        <div class="project-tags"><span class="project-tag">Founder</span><span class="project-tag">Event Management</span><span class="project-tag">Sponsorships</span></div>
-        <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:8px;">2015 — Present</div>
-      </div>
-      <div class="project-card reveal">
-        <div class="project-icon">👕</div>
-        <div class="project-title">8th Floor Apparel</div>
-        <div class="project-desc">Co-founded a clothing brand producing 60+ unique designs with custom fabrics and original artwork. Sold 10,000+ units across Turkey. Currently on hiatus, relaunch planned.</div>
-        <div class="project-tags"><span class="project-tag">Co-Founder</span><span class="project-tag">Brand & Design</span><span class="project-tag">10K+ Units</span></div>
-        <a href="http://www.8thfloors.com" target="_blank" class="project-link" style="margin-top:10px;">8THFLOORS.COM →</a>
-        <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:6px;">2015 — Present · Relaunch Soon</div>
-      </div>
-      <div class="project-card reveal">
-        <div class="project-icon">⚡</div>
-        <div class="project-title">W8 Events</div>
-        <div class="project-desc">Personal event company with 10+ events across major Turkish cities. Full production management, international artist booking. Sponsored by Olmeca, Anadolu Efes and Tuborg.</div>
-        <div class="project-tags"><span class="project-tag">Sole Founder</span><span class="project-tag">Production</span><span class="project-tag">Artist Booking</span></div>
-        <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:8px;">2015 — Present</div>
-      </div>
-    </div>
-
-    <div style="font-family:var(--mono);font-size:10px;color:var(--neon);letter-spacing:2px;margin-bottom:16px;">// FLAGSHIP EVENTS</div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:40px;">
-      <div class="reveal" style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;">
-        <div class="timeline-header"><span class="timeline-title" style="font-size:16px;">Cyro Music & Art Festival</span><span class="timeline-date">APR 30 – MAY 5, 2019</span></div>
-        <div class="timeline-company" style="margin-top:4px;">Olympos Babylon Town · Kumluca, Antalya</div>
-        <ul class="timeline-ul" style="margin-top:10px;">
-          <li>~2,000 attendees across 6-day outdoor festival</li>
-          <li>48 hours non-stop music across multiple stages</li>
-          <li>Interactive workshops: ceramics, graffiti art, drama, mask design</li>
-          <li>Boat tours, live DJ & illustration performances</li>
-          <li>Shuttle buses from Istanbul, Ankara and Izmir</li>
-        </ul>
-      </div>
-      <div class="reveal" style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;">
-        <div class="timeline-header"><span class="timeline-title" style="font-size:16px;">Too Loud Society — Stephan Bodzin</span><span class="timeline-date">AUG 18, 2018</span></div>
-        <div class="timeline-company" style="margin-top:4px;">Fly-Inn Beach · Cesme, Izmir</div>
-        <ul class="timeline-ul" style="margin-top:10px;">
-          <li>Headliners: Stephan Bodzin & Rodriguez Jr.</li>
-          <li>Organization partner for flagship beach event</li>
-          <li>One of the largest electronic music events in Cesme</li>
-        </ul>
-      </div>
-    </div>
-
-    <div style="font-family:var(--mono);font-size:10px;color:var(--neon);letter-spacing:2px;margin-bottom:14px;">// SPONSORS & PARTNERS</div>
-    <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:40px;">
-      <a href="https://www.anadoluefes.com" target="_blank" style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 16px;border-radius:12px;border:1px solid var(--border);background:var(--surface);text-decoration:none;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(0,255,231,0.4)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform=''"><span style="font-size:28px;margin-bottom:10px;">🍺</span><span style="font-family:var(--display);font-size:15px;font-weight:600;color:var(--text);text-align:center;">Anadolu Efes</span><span style="font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:4px;letter-spacing:1px;">SPONSOR</span></a>
-      <a href="https://www.tuborg.com" target="_blank" style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 16px;border-radius:12px;border:1px solid var(--border);background:var(--surface);text-decoration:none;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(0,255,231,0.4)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform=''"><span style="font-size:28px;margin-bottom:10px;">🍺</span><span style="font-family:var(--display);font-size:15px;font-weight:600;color:var(--text);text-align:center;">Tuborg</span><span style="font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:4px;letter-spacing:1px;">SPONSOR</span></a>
-      <a href="https://olmecaaltos.com/" target="_blank" style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 16px;border-radius:12px;border:1px solid var(--border);background:var(--surface);text-decoration:none;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(0,255,231,0.4)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform=''"><span style="font-size:28px;margin-bottom:10px;">🥃</span><span style="font-family:var(--display);font-size:15px;font-weight:600;color:var(--text);text-align:center;">Olmeca</span><span style="font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:4px;letter-spacing:1px;">SPONSOR</span></a>
-      <a href="https://www.redbull.com" target="_blank" style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 16px;border-radius:12px;border:1px solid var(--border);background:var(--surface);text-decoration:none;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(0,255,231,0.4)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform=''"><span style="font-size:28px;margin-bottom:10px;">🔴</span><span style="font-family:var(--display);font-size:15px;font-weight:600;color:var(--text);text-align:center;">Red Bull</span><span style="font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:4px;letter-spacing:1px;">SPONSOR</span></a>
-      <a href="https://www.decathlon.com" target="_blank" style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 16px;border-radius:12px;border:1px solid var(--border);background:var(--surface);text-decoration:none;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(0,255,231,0.4)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform=''"><span style="font-size:28px;margin-bottom:10px;">⛺</span><span style="font-family:var(--display);font-size:15px;font-weight:600;color:var(--text);text-align:center;">Decathlon</span><span style="font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:4px;letter-spacing:1px;">SPONSOR</span></a>
-    </div>
-
-    <div style="font-family:var(--mono);font-size:10px;color:var(--neon);letter-spacing:2px;margin-bottom:14px;">// PERSONAL ACTIVITIES</div>
-    <div style="display:flex;flex-wrap:wrap;gap:14px;" class="reveal">
-      <div class="lang-card" style="flex:1;min-width:140px;text-align:left;padding:18px 20px;"><div style="font-size:22px;margin-bottom:8px;">🪂</div><div class="lang-name">Paragliding</div><div class="lang-level">TURKISH AERONAUTICAL ASSOC.</div></div>
-      <div class="lang-card" style="flex:1;min-width:140px;text-align:left;padding:18px 20px;"><div style="font-size:22px;margin-bottom:8px;">🏄</div><div class="lang-name">Kitesurfing</div><div class="lang-level">URLA SURFHOUSE · 2018 — PRESENT</div></div>
-      <div class="lang-card" style="flex:1;min-width:140px;text-align:left;padding:18px 20px;"><div style="font-size:22px;margin-bottom:8px;">⚓</div><div class="lang-name">Sailing</div><div class="lang-level">LICENSED · 2022</div></div>
-      <div class="lang-card" style="flex:1;min-width:140px;text-align:left;padding:18px 20px;"><div style="font-size:22px;margin-bottom:8px;">🚁</div><div class="lang-name">Drone Piloting</div><div class="lang-level">IHA-0 LICENSED · 2020</div></div>
     </div>
   </section>
 
   <!-- LANGUAGES -->
   <section class="section" id="languages">
     <div class="section-header reveal">
-      <span class="section-num">10</span>
+      <span class="section-num">11</span>
       <span class="section-title">LANGUAGES</span>
       <div class="section-line"></div>
     </div>
     <div class="lang-row">
-      <div class="lang-card reveal"><div class="lang-flag">🇹🇷</div><div class="lang-name">Turkish</div><div class="lang-level">NATIVE / FLUENT</div></div>
       <div class="lang-card reveal"><div class="lang-flag">🇺🇸</div><div class="lang-name">English</div><div class="lang-level">PROFESSIONAL WORKING</div></div>
+      <div class="lang-card reveal"><div class="lang-flag">🇹🇷</div><div class="lang-name">Turkish</div><div class="lang-level">NATIVE / FLUENT</div></div>
+      <div class="lang-card reveal"><div class="lang-flag">🇪🇸</div><div class="lang-name">Spanish</div><div class="lang-level">BEGINNER</div></div>
+    </div>
+
+    <!-- PERSONAL ACTIVITIES -->
+    <div style="margin-top:40px;">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--neon);letter-spacing:2px;margin-bottom:14px;">// PERSONAL ACTIVITIES</div>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;" class="reveal">
+        <div class="lang-card" style="flex:1;min-width:140px;text-align:left;padding:18px 20px;"><div style="font-size:22px;margin-bottom:8px;">🪂</div><div class="lang-name">Paragliding</div><div class="lang-level">TURKISH AERONAUTICAL ASSOC.</div></div>
+        <div class="lang-card" style="flex:1;min-width:140px;text-align:left;padding:18px 20px;"><div style="font-size:22px;margin-bottom:8px;">🏄</div><div class="lang-name">Kitesurfing</div><div class="lang-level">URLA SURFHOUSE · 2018 — PRESENT</div></div>
+        <div class="lang-card" style="flex:1;min-width:140px;text-align:left;padding:18px 20px;"><div style="font-size:22px;margin-bottom:8px;">⚓</div><div class="lang-name">Sailing</div><div class="lang-level">LICENSED · 2022</div></div>
+        <div class="lang-card" style="flex:1;min-width:140px;text-align:left;padding:18px 20px;"><div style="font-size:22px;margin-bottom:8px;">🚁</div><div class="lang-name">Drone Piloting</div><div class="lang-level">IHA-0 LICENSED · 2020</div></div>
+      </div>
     </div>
   </section>
 
   <!-- CONTACT -->
   <section class="section" id="contact">
     <div class="section-header reveal">
-      <span class="section-num">11</span>
+      <span class="section-num">12</span>
       <span class="section-title">CONTACT</span>
       <div class="section-line"></div>
     </div>
     <div class="contact-wrap">
       <div class="contact-info reveal">
         <div class="contact-label">// EMAIL</div>
-        <div class="contact-val">
-          <a href="mailto:ozcan.celik@go.sfcollege.edu">ozcan.celik&#64;go.sfcollege.edu</a><br>
-          <a href="mailto:ozcan@c72.org">ozcan&#64;c72.org</a>
-        </div>
+        <div class="contact-val"><a href="mailto:ozcan.celik@go.sfcollege.edu">ozcan.celik&#64;go.sfcollege.edu</a><br><a href="mailto:ozcan@c72.org">ozcan&#64;c72.org</a></div>
         <div class="contact-label">// LOCATION</div>
         <div class="contact-val">Jacksonville, FL — CPT Eligible</div>
         <div class="contact-label">// PROFILES</div>
@@ -960,8 +761,8 @@
         <a href="mailto:ozcan.celik@go.sfcollege.edu" class="btn btn-neon" style="margin-top:8px;">SEND MESSAGE</a>
       </div>
       <div class="contact-cta reveal">
-        <div class="cta-title">Open to <span>Cybersecurity</span> &<br><span>IT Support</span> Internships</div>
-        <div class="cta-sub">CPT-eligible student actively seeking hands-on experience in cybersecurity, penetration testing, and IT infrastructure. Top 20% on TryHackMe, ADEPT Rank. Available in Jacksonville, FL and remote.</div>
+        <div class="cta-title">Open to <span>IT Security</span> &<br><span>Cybersecurity</span> Internships</div>
+        <div class="cta-sub">CPT-eligible student actively seeking hands-on experience in IT support, cybersecurity, and penetration testing. Top 20% on TryHackMe, ADEPT Rank. Available in Jacksonville, FL and remote.</div>
         <a href="https://raw.githubusercontent.com/ozcanceliksf/resume-and-career-docs/main/Ozcan%20Celik%20Resume.pdf" target="_blank" class="btn btn-neon">⬇ DOWNLOAD RESUME</a>
       </div>
     </div>
@@ -976,39 +777,28 @@
       'IT Security Student @ Santa Fe College',
       'TryHackMe ADEPT · Top 20% Globally',
       'Ethical Hacking · Penetration Testing',
-      'CPT-Eligible · Seeking Internship',
+      'Help Desk & IT Support · 4+ Years',
+      'CPT-Eligible · Open to Internships',
       'picoCTF 2026 · 34 Challenges Solved',
     ];
     let pi = 0, ci = 0, deleting = false;
     const el = document.getElementById('typed-text');
     function type() {
       const phrase = phrases[pi];
-      if (!deleting) {
-        el.textContent = phrase.slice(0, ci + 1); ci++;
-        if (ci === phrase.length) { deleting = true; setTimeout(type, 2200); return; }
-      } else {
-        el.textContent = phrase.slice(0, ci - 1); ci--;
-        if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; }
-      }
+      if (!deleting) { el.textContent = phrase.slice(0, ci+1); ci++; if (ci === phrase.length) { deleting = true; setTimeout(type, 2200); return; } }
+      else { el.textContent = phrase.slice(0, ci-1); ci--; if (ci === 0) { deleting = false; pi = (pi+1) % phrases.length; } }
       setTimeout(type, deleting ? 38 : 62);
     }
     type();
 
     const revealEls = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((e, i) => {
-        if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 80); observer.unobserve(e.target); }
-      });
+      entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 80); observer.unobserve(e.target); } });
     }, { threshold: 0.1 });
     revealEls.forEach(el => observer.observe(el));
 
     const barObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => { bar.style.width = bar.dataset.w + '%'; });
-          barObserver.unobserve(entry.target);
-        }
-      });
+      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => { bar.style.width = bar.dataset.w + '%'; }); barObserver.unobserve(entry.target); } });
     }, { threshold: 0.3 });
     document.querySelectorAll('.skill-group').forEach(g => barObserver.observe(g));
   </script>
