@@ -4,6 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ozcan Celik | IT Security Student</title>
+  <meta name="description" content="Ozcan Celik — IT Security student at Santa Fe College with 4+ years of technical support experience. Top 15% globally on TryHackMe, 34 picoCTF 2026 challenges solved. Seeking a cybersecurity or IT support internship." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Ozcan Celik | IT Security Student" />
+  <meta property="og:description" content="IT Security student at Santa Fe College with 4+ years of technical support experience. Top 15% globally on TryHackMe, 34 picoCTF 2026 challenges solved. Seeking a cybersecurity or IT support internship." />
+  <meta property="og:image" content="https://ozcanceliksf.github.io/ozcan-celik.jpg" />
+  <meta property="og:url" content="https://ozcanceliksf.github.io/" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ozcan Celik | IT Security Student" />
+  <meta name="twitter:description" content="IT Security student at Santa Fe College with 4+ years of technical support experience. Top 15% globally on TryHackMe, 34 picoCTF 2026 challenges solved." />
+  <meta name="twitter:image" content="https://ozcanceliksf.github.io/ozcan-celik.jpg" />
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23060608'/%3E%3Crect x='2' y='2' width='60' height='60' rx='12' fill='none' stroke='%2300ffe7' stroke-width='3'/%3E%3Ctext x='32' y='43' font-family='monospace,Consolas' font-size='24' font-weight='700' fill='%2300ffe7' text-anchor='middle'%3EOC%3C/text%3E%3C/svg%3E" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
@@ -36,6 +51,11 @@
     .nav-links { display: flex; gap: 6px; flex-wrap: wrap; }
     .nav-links a { font-family: var(--mono); font-size: 11px; color: var(--muted); text-decoration: none; padding: 5px 10px; border-radius: 4px; transition: color 0.2s, background 0.2s; letter-spacing: 1px; }
     .nav-links a:hover { color: var(--neon); background: rgba(0,255,231,0.07); }
+    .nav-toggle { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 32px; height: 32px; background: transparent; border: 1px solid var(--border2); border-radius: 4px; cursor: pointer; padding: 0; z-index: 101; }
+    .nav-toggle span { display: block; width: 16px; height: 2px; margin: 0 auto; background: var(--neon); transition: transform 0.25s ease, opacity 0.2s ease; }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
     header { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; padding: 80px 24px 60px; }
     .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(0,255,231,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,231,0.04) 1px, transparent 1px); background-size: 40px 40px; animation: gridPulse 8s ease-in-out infinite; }
@@ -180,16 +200,6 @@
     .learning-title { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
     .learning-sub { font-family: var(--mono); font-size: 10px; color: var(--muted); }
 
-    /* WRITEUPS */
-    .writeup-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 10px; transition: border-color 0.2s, transform 0.2s; }
-    .writeup-card:hover { border-color: rgba(0,255,231,0.25); transform: translateY(-2px); }
-    .writeup-placeholder { border-style: dashed; opacity: 0.6; }
-    .writeup-tag { font-family: var(--mono); font-size: 9px; padding: 2px 8px; border-radius: 3px; display: inline-block; }
-    .writeup-tag.forensics { background: rgba(0,255,231,0.08); color: var(--neon); border: 1px solid rgba(0,255,231,0.2); }
-    .writeup-tag.web { background: rgba(100,100,255,0.1); color: #a0a0ff; border: 1px solid rgba(100,100,255,0.2); }
-    .writeup-tag.thm { background: rgba(255,50,100,0.08); color: #ff6080; border: 1px solid rgba(255,50,100,0.2); }
-    .writeup-tag.crypto { background: rgba(255,165,0,0.08); color: #ffaa44; border: 1px solid rgba(255,165,0,0.2); }
-
     .lang-row { display: flex; gap: 16px; flex-wrap: wrap; }
     .lang-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px 28px; text-align: center; transition: border-color 0.2s; }
     .lang-card:hover { border-color: var(--neon); }
@@ -215,22 +225,43 @@
     @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
-    @media (max-width: 768px) { .nav-links { display: none; } .hero-name { letter-spacing: 2px; } .contact-wrap { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) {
+      .nav-toggle { display: flex; }
+      .nav-links { display: none; position: absolute; top: 54px; left: 0; right: 0; flex-direction: column; gap: 2px; background: rgba(6,6,8,0.98); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 10px 24px 16px; }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 12px 6px; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+      .hero-name { letter-spacing: 2px; }
+      .contact-wrap { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
   </style>
 </head>
 <body>
 
   <nav>
     <span class="nav-logo">&gt; OC_</span>
-    <div class="nav-links">
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="nav-links">
       <a href="#about">about</a>
       <a href="#skills">skills</a>
       <a href="#projects">projects</a>
       <a href="#experience">experience</a>
       <a href="#ctf">ctf</a>
+      <a href="#github">github</a>
       <a href="#roadmap">roadmap</a>
       <a href="#education">education</a>
       <a href="#certifications">certs</a>
+      <a href="#languages">languages</a>
       <a href="#contact">contact</a>
     </div>
   </nav>
@@ -241,7 +272,7 @@
     <div class="hero-glow"></div>
     <div class="hero-content">
       <div class="hero-photo-wrap">
-        <img src="ozcan celik pic.jpeg" alt="Ozcan Celik" class="hero-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <img src="ozcan-celik.jpg" alt="Ozcan Celik" class="hero-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div style="display:none;width:150px;height:150px;border-radius:50%;background:rgba(0,255,231,0.1);align-items:center;justify-content:center;font-family:var(--display);font-size:2.5rem;font-weight:700;color:var(--neon);">OC</div>
       </div>
       <div class="hero-tag">// IT SECURITY & CYBERSECURITY · HELP DESK · NETWORKING</div>
@@ -422,16 +453,6 @@
         </div>
       </div>
 
-      <!-- HTB -->
-      <div style="margin-bottom:24px;">
-        <div style="font-family:var(--mono);font-size:10px;color:#9fef00;letter-spacing:2px;margin-bottom:12px;">// HACKTHEBOX — ACTIVE</div>
-        <div style="background:rgba(159,239,0,0.04);border:1px solid rgba(159,239,0,0.2);border-radius:10px;padding:18px;">
-          <div style="font-family:var(--display);font-size:16px;font-weight:600;color:#e8e8f0;margin-bottom:8px;">Active Profile & Labs</div>
-          <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:12px;">Verified skills: System Exploitation · Web Site Structure Discovery · Network Sniffing · Reconnaissance · Linux Capabilities</div>
-          <span class="btn btn-ghost" style="font-size:11px;padding:8px 16px;border-color:rgba(159,239,0,0.3);color:#9fef00;cursor:default;">HTB PROFILE LINK PENDING</span>
-        </div>
-      </div>
-
       <!-- Platform pills -->
       <div class="ctf-platforms">
         <a href="https://tryhackme.com/p/ozcanceliksf" target="_blank" style="background:var(--surface2);border:1px solid rgba(0,255,231,0.3);border-radius:8px;padding:16px;text-align:center;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(0,255,231,0.7)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(0,255,231,0.3)'">
@@ -439,11 +460,6 @@
           <div style="font-family:var(--mono);font-size:10px;color:var(--muted);">tryhackme.com/p/ozcanceliksf</div>
           <div style="font-family:var(--mono);font-size:10px;color:var(--neon);margin-top:4px;">● ACTIVE ↗</div>
         </a>
-        <div style="background:var(--surface2);border:1px solid rgba(159,239,0,0.3);border-radius:8px;padding:16px;text-align:center;text-decoration:none;transition:all 0.2s;">
-          <div style="font-family:var(--display);font-size:16px;font-weight:600;color:#9fef00;">HackTheBox</div>
-          <div style="font-family:var(--mono);font-size:10px;color:var(--muted);">app.hackthebox.com</div>
-          <div style="font-family:var(--mono);font-size:10px;color:#9fef00;margin-top:4px;">● ACTIVE ↗</div>
-        </div>
         <a href="https://play.picoctf.org/users/ozcanceliksf" target="_blank" style="background:var(--surface2);border:1px solid rgba(0,255,231,0.3);border-radius:8px;padding:16px;text-align:center;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(0,255,231,0.7)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(0,255,231,0.3)'">
           <div style="font-family:var(--display);font-size:16px;font-weight:600;color:var(--neon);">PicoCTF</div>
           <div style="font-family:var(--mono);font-size:10px;color:var(--muted);">picoctf.org</div>
@@ -477,7 +493,7 @@
   <!-- GITHUB STATS -->
   <section class="section" id="github">
     <div class="section-header reveal">
-      <span class="section-num">07</span>
+      <span class="section-num">06</span>
       <span class="section-title">GITHUB ACTIVITY</span>
       <div class="section-line"></div>
     </div>
@@ -542,9 +558,6 @@
         const allRepos = await reposRes.json();
 
         if (Array.isArray(allRepos)) {
-          // Total stars
-          const totalStars = allRepos.reduce((sum, r) => sum + r.stargazers_count, 0);
-
           // Language stats
           const langMap = {};
           allRepos.forEach(r => { if (r.language) langMap[r.language] = (langMap[r.language] || 0) + 1; });
@@ -599,7 +612,7 @@
   <!-- ROADMAP -->
   <section class="section" id="roadmap">
     <div class="section-header reveal">
-      <span class="section-num">08</span>
+      <span class="section-num">07</span>
       <span class="section-title">ROADMAP & GOALS</span>
       <div class="section-line"></div>
     </div>
@@ -610,7 +623,6 @@
       <div class="learning-card"><div class="learning-label">// ACTIVE</div><div class="learning-title">CompTIA Network+</div><div class="learning-sub">Exam prep · In progress</div></div>
       <div class="learning-card"><div class="learning-label">// ACTIVE</div><div class="learning-title">ISC2 CC (Cybersecurity)</div><div class="learning-sub">Self-study · In progress</div></div>
       <div class="learning-card"><div class="learning-label">// ACTIVE</div><div class="learning-title">TryHackMe Paths</div><div class="learning-sub">Jr Penetration Tester path</div></div>
-      <div class="learning-card"><div class="learning-label">// ACTIVE</div><div class="learning-title">HackTheBox Labs</div><div class="learning-sub">Hands-on machine exploitation</div></div>
     </div>
 
     <div style="font-family:var(--mono);font-size:10px;color:var(--neon);letter-spacing:2px;margin-bottom:16px;">// GOALS</div>
@@ -656,11 +668,6 @@
         <div class="roadmap-desc">Certified Ethical Hacker · Target: 2026</div>
       </div>
       <div class="roadmap-card upcoming">
-        <div class="roadmap-status upcoming">◎ UPCOMING</div>
-        <div class="roadmap-title">HTB Pro Hacker Rank</div>
-        <div class="roadmap-desc">Advancing through HackTheBox machines</div>
-      </div>
-      <div class="roadmap-card upcoming">
         <div class="roadmap-status upcoming">◎ FUTURE</div>
         <div class="roadmap-title">OSCP</div>
         <div class="roadmap-desc">Offensive Security Certified Professional</div>
@@ -671,7 +678,7 @@
   <!-- EDUCATION -->
   <section class="section" id="education">
     <div class="section-header reveal">
-      <span class="section-num">09</span>
+      <span class="section-num">08</span>
       <span class="section-title">EDUCATION</span>
       <div class="section-line"></div>
     </div>
@@ -706,7 +713,7 @@
   <!-- CERTIFICATIONS -->
   <section class="section" id="certifications">
     <div class="section-header reveal">
-      <span class="section-num">10</span>
+      <span class="section-num">09</span>
       <span class="section-title">CERTIFICATIONS</span>
       <div class="section-line"></div>
     </div>
@@ -729,15 +736,11 @@
       </div>
       <div class="cert-card reveal">
         <div class="cert-icon active">🕸️</div>
-        <div><div class="cert-name">TryHackMe — ADEPT Rank</div><div class="cert-status active">TOP 20% · 7 BADGES · 41 ROOMS</div></div>
+        <div><div class="cert-name">TryHackMe — ADEPT Rank</div><div class="cert-status active">TOP 15% · 9 BADGES · 42 ROOMS</div></div>
       </div>
       <div class="cert-card reveal">
         <div class="cert-icon active">🚩</div>
         <div><div class="cert-name">picoCTF 2026</div><div class="cert-status active">34 CHALLENGES SOLVED</div></div>
-      </div>
-      <div class="cert-card reveal">
-        <div class="cert-icon active">🖥️</div>
-        <div><div class="cert-name">HackTheBox</div><div class="cert-status active">ACTIVE PROFILE</div></div>
       </div>
     </div>
   </section>
@@ -745,7 +748,7 @@
   <!-- LANGUAGES -->
   <section class="section" id="languages">
     <div class="section-header reveal">
-      <span class="section-num">11</span>
+      <span class="section-num">10</span>
       <span class="section-title">LANGUAGES</span>
       <div class="section-line"></div>
     </div>
@@ -770,7 +773,7 @@
   <!-- CONTACT -->
   <section class="section" id="contact">
     <div class="section-header reveal">
-      <span class="section-num">12</span>
+      <span class="section-num">11</span>
       <span class="section-title">CONTACT</span>
       <div class="section-line"></div>
     </div>
@@ -811,13 +814,31 @@
     ];
     let pi = 0, ci = 0, deleting = false;
     const el = document.getElementById('typed-text');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     function type() {
       const phrase = phrases[pi];
       if (!deleting) { el.textContent = phrase.slice(0, ci+1); ci++; if (ci === phrase.length) { deleting = true; setTimeout(type, 2200); return; } }
       else { el.textContent = phrase.slice(0, ci-1); ci--; if (ci === 0) { deleting = false; pi = (pi+1) % phrases.length; } }
       setTimeout(type, deleting ? 38 : 62);
     }
-    type();
+    if (prefersReducedMotion) {
+      el.textContent = phrases[0];
+    } else {
+      type();
+    }
+
+    const navToggle = document.getElementById('nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      navToggle.classList.toggle('open', isOpen);
+      navToggle.setAttribute('aria-expanded', isOpen);
+    });
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      navToggle.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }));
 
     const revealEls = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
